@@ -1,13 +1,12 @@
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import { MdOutlineHolidayVillage } from "react-icons/md";
 import { MdOutlinePayment } from "react-icons/md";
 import WhyChooseUs from "./WhyChooseUs";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 
 const AboutUs = () => {
   return (
     <div>
-        <Navbar />
       <img src="/images/About-us.jpg" className="sm:w-[100%] sm:h-[auto] h-[15rem] "/>
       <div className="container w-[100%] mx-auto  ">
       <div className=" absolute  sm:top-[25%] top-[18%] pl-2 sm:pl-0 leading-[3rem]">
@@ -70,7 +69,6 @@ Nullam maximus.</p>
       </div>
       </div>
       <WhyChooseUs/>
-      <Footer/>
       </div>
     
    )

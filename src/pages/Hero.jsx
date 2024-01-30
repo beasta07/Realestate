@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoFilterSharp } from "react-icons/io5";
+import DiscoverProperties from '../components/DiscoverProperties'
+import WhyChooseUs from './WhyChooseUs'
+import Blog from './Blog'
+import RealEstate from './RealEstate'
+import Review from './Review'
+import InquiryForm from './InquiryForm'
+import ExploreApartments from './exploreApartments'
 
 export default function Hero() {
   const [searchType, setSearchType] = useState("buy");
@@ -63,6 +70,15 @@ export default function Hero() {
           <img src="images/firstHouse.png" className="w-[65rem] -ml-[10rem] mt-[5rem] r-0" />
         </div>
       </div>
+     < DiscoverProperties/>
+     <ExploreApartments/>  
+
+<WhyChooseUs/>
+<Review/>
+<InquiryForm/>
+
+<Blog/>
+<RealEstate/>
     </>
   );
 }
