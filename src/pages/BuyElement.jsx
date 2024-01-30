@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Navbar from "../components/Navbar";
 import { CiClock1 } from "react-icons/ci";
 import { CiShare1 } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
@@ -13,7 +12,6 @@ import { MdOutlineGarage } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
 import { FiPhoneCall } from "react-icons/fi";
 import DiscoverProperties from '../components/DiscoverProperties';
-import Footer from '../components/Footer';
 
 const BuyElement = () => {
   const [showMore, setShowMore] = useState(false);
@@ -102,11 +100,11 @@ const BuyElement = () => {
             <div className="sm:w-[70%]  sm:px-0 rounded-xl shadow-md bg-white mt-[4rem] sm:h-[35rem]">
               <h1 className=' font-semibold p-5 '>Property Description</h1>
               <p className='mx-5 text-[0.85rem] text-justify leading-[1.5rem]'>
-                This 3-bed with a loft, 2-bath home in the gated community of The Hideout has it all. From the open floor plan to the abundance of light from the windows, this home is perfect for entertaining. The living room and dining room have vaulted ceilings and a beautiful fireplace. You will love spending time on the deck taking in the beautiful views. In the kitchen, you'll find stainless steel appliances and a tile backsplash, as well as a breakfast bar.
+                This 3-bed with a loft, 2-bath home in the gated community of The Hideout has it all. From the open floor plan to the abundance of light from the windows, this home is perfect for entertaining. The living room and dining room have vaulted ceilings and a beautiful fireplace. You will love spending time on the deck taking in the beautiful views. In the kitchen, you will ll find stainless steel appliances and a tile backsplash, as well as a breakfast bar.
               </p>
               {showMore && (
                 <p className='mx-5 text-[0.85rem] text-justify leading-[1.5rem]'>
-                  Placeholder content for this accordion, which is intended to demonstrate the class. This is the first item's accordion body you get groundbreaking performance and amazing battery life. Add to that a stunning Liquid Retina XDR display, the best camera and audio ever in a Mac notebook, and all the ports you need.
+                  Placeholder content for this accordion, which is intended to demonstrate the class. This is the first items accordion body you get groundbreaking performance and amazing battery life. Add to that a stunning Liquid Retina XDR display, the best camera and audio ever in a Mac notebook, and all the ports you need.
                 </p>
               )}
               <button onClick={toggleShowMore} className="text-black font-semibold hover:underline focus:outline-none text-[1rem] mx-5">
@@ -182,7 +180,7 @@ const BuyElement = () => {
         <input type='text' placeholder="Enter you Name" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
         
         <input type='email' placeholder="Abc@gmail.com" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
-        <input type='number' placeholder="Enter your Number" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
+        <input type='number'min="0 " placeholder="Enter your Number" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
 
 
         <textarea type='text' placeholder="Any Questions" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
