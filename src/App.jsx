@@ -15,6 +15,8 @@ import Contact from './pages/Contact'
 import MainBlog from './pages/MainBlog'
 import AddProperty from './pages/AddProperty'
 import BlogDiscription from './pages/BlogDiscription'
+import AboutUs from './pages/AboutUs'
+import BuyElement from './components/BuyElement'
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
         <Routes>
           <Route path='/carousel' element={<CarouselWithContent />} />
           <Route path='/' element={<Hero />} />
+          <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/discover' element={<Discover />} />
           <Route path='/apartmenttype' element={<ApartmentType />} />
           <Route path='/propertybuy' element={<PropertyBuy />} />
@@ -35,6 +38,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/addproperty' element={<AddProperty />} />
           <Route path='/blogdiscription' element={<BlogDiscription />} />
+          <Route path='/buyelement' element={<BuyElement />} />
         </Routes>
         <Footer />
       </BrowserRouter>

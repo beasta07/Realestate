@@ -21,12 +21,12 @@ const Navbars = () => {
             <div className="w-[100%] shadow">
                 <div className=" hidden sm:sticky top-0 container w-[100%] mx-auto sm:flex  justify-between py-5 text-black font-medium bg-transparent">
                     <div className="pt-4">
-                        <h2>MyRAJ</h2>
+                        <h2 className='font-semibold'>MyRAJ</h2>
                     </div>
                     <div className="pt-4">
                         <ul className="flex gap-12">
                             <Link to='/'><li>Home</li></Link>
-                            <Link to='/about'><li>About</li></Link>
+                            <Link to='/aboutus'><li>About</li></Link>
                             <Link to='/buy'><li>Buy</li></Link>
                             <Link to='/sell'><li>Sell</li></Link>
                             <Link to='/mainblog'><li>Blog</li></Link>
@@ -52,7 +52,7 @@ const Navbars = () => {
                             </div> <hr />
                             <ul className="flex flex-col px-5 leading-[3.3rem] pt-9 pb-3">
                                 <Link to='/' onClick={closeMenu}><li>Home</li></Link>
-                                <Link to='/about' onClick={closeMenu}><li>About</li></Link>
+                                <Link to='/aboutus' onClick={closeMenu}><li>About</li></Link>
                                 <Link to='/buy' onClick={closeMenu}><li>Buy</li></Link>
                                 <Link to='/sell' onClick={closeMenu}><li>Sell</li></Link>
                                 <Link to='/mainblog' onClick={closeMenu}><li>Blog</li></Link>

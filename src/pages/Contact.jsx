@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <div>
         <div className="mb-[0rem]">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776850155!2d85.28493301147012!3d27.70903024180952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1706503916499!5m2!1sen!2snp" width="100%" height="600" style={{border:0}} allowfullscreen="" loading="lazy" className=""/>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776850155!2d85.28493301147012!3d27.70903024180952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1706503916499!5m2!1sen!2snp" width="100%" height="600" style={{border:0}} allowfullscreen=""/>
         <div className="container w-[100%] mx-auto">
         <div className="sm:flex gap-[15rem] mt-14 sm:-mt-[23rem]">
             <div className="w-[90%] mx-auto sm:mx-0 sm:w-[80%] bg-white p-8 rounded-lg border-2 border-gray-300">
