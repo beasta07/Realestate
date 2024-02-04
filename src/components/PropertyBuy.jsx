@@ -1,5 +1,6 @@
 // import React from 'react'
 import { MdOutlineArrowOutward } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const PropertyBuy = () => {
   return (
@@ -12,19 +13,19 @@ const PropertyBuy = () => {
                     <img src="/images/propertyBuy.svg" className="w-[55%] mt-5 p-8 mx-auto"/>
                     <h2 className="font-medium text-[1.3rem]">Buy a property</h2>
                     <p className="text-sm px-5 py-5">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                    <button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a home<MdOutlineArrowOutward className="mt-1 mx-2" /></button>
+                    <Link to='/'><button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a home<MdOutlineArrowOutward className="mt-1 mx-2" /></button></Link>
                 </div>
                 <div className="bg-white rounded-lg mt-[4rem] py-2 sm:py-0">
                     <img src="/images/propertyBuy.svg" className="w-[55%] mt-5 p-8 mx-auto"/>
                     <h2 className="font-medium text-[1.3rem]">Sell a property</h2>
                     <p className="text-sm px-5 py-5">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                    <button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Place an ad<MdOutlineArrowOutward className="mt-1 mx-2" /></button>
+                    <Link to='/addproperty'><button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Place an ad<MdOutlineArrowOutward className="mt-1 mx-2" /></button></Link>
                 </div>
                 <div className="bg-white rounded-lg mt-[4rem] py-2 sm:py-0">
                     <img src="/images/propertyBuy.svg" className="w-[55%] mt-5 p-8 mx-auto"/>
                     <h2 className="font-medium text-[1.3rem]">Rent a property</h2>
                     <p className="text-sm px-5 py-5">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                    <button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a rental<MdOutlineArrowOutward className="mt-1 mx-2" /></button>
+                    <Link to='/'><button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a rental<MdOutlineArrowOutward className="mt-1 mx-2" /></button></Link>
                 </div>
             </div>
         </div>

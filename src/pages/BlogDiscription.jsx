@@ -1,8 +1,14 @@
 // import React from 'react'
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
-import Blogs from "../components/Blogs";
+// import Blogs from "../components/Blogs";
+import { useParams } from "react-router-dom";
 
 const BlogDiscription = () => {
+
+    const {id} = useParams()
+
+    console.log(id, "idd")
+    
     return (
         <div>
             <div>
@@ -64,7 +70,7 @@ const BlogDiscription = () => {
 
                     </div>
                 </div>
-                        <div className="container w-[100%] mx-auto text-center mt-[6rem]">
+                        {/* <div className="container w-[100%] mx-auto text-center mt-[6rem]">
                             <h2 className="font-semibold text-[1.7rem] ">Related Posts</h2>
                             <p className="text-sm">Aliquam lacinia diam quis lacus euismod</p>
                             <div className="grid sm:grid-cols-3 gap-3 mt-16 ml-2 sm:ml-0">
@@ -75,7 +81,7 @@ const BlogDiscription = () => {
                                 }
 
                             </div>
-                        </div>
+                        </div> */}
             </div>
         </div>
     )

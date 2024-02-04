@@ -7,7 +7,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 const AboutUs = () => {
   return (
     <div>
-      <img src="/images/About-us.jpg" className="sm:w-[100%] sm:h-[auto] h-[15rem] "/>
+      <img src="/images/About-us.jpg" className="sm:w-[100%] sm:h-[auto] h-[15rem] object-cover "/>
       <div className="container w-[100%] mx-auto  ">
       <div className=" absolute  sm:top-[25%] top-[18%] pl-2 sm:pl-0 leading-[3rem]">
         <h1 className="font-semibold sm:text-[2rem] text-[1.25rem]">About us</h1>

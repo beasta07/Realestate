@@ -17,13 +17,15 @@ import AddProperty from './pages/AddProperty'
 import BlogDiscription from './pages/BlogDiscription'
 import AboutUs from './pages/AboutUs'
 import BuyElement from './components/BuyElement'
+import Buy from './pages/Buy'
+import Sell from './pages/Sell'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-          <Navbars />
+        <Navbars />
         <Routes>
           <Route path='/carousel' element={<CarouselWithContent />} />
           <Route path='/' element={<Hero />} />
@@ -34,11 +36,13 @@ function App() {
           <Route path='/buysell' element={<BuySell />} />
           <Route path='/bestdeal' element={<Bestdeal />} />
           <Route path='/blog' element={<Blog />} />
-          <Route path='/mainblog' element={<MainBlog /> } />
+          <Route path='/mainblog' element={<MainBlog />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/addproperty' element={<AddProperty />} />
-          <Route path='/blogdiscription' element={<BlogDiscription />} />
+          <Route path='/blog/:id' element={<BlogDiscription />} />
           <Route path='/buyelement' element={<BuyElement />} />
+          <Route path='/buy' element={<Buy />} />
+          <Route path='/sell' element={<Sell />} />
         </Routes>
         <Footer />
       </BrowserRouter>
