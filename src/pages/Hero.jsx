@@ -1,19 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoFilterSharp } from "react-icons/io5";
-import DiscoverProperties from '../components/DiscoverProperties'
-import WhyChooseUs from './WhyChooseUs'
-import Blog from './Blog'
-import RealEstate from './RealEstate'
-import Review from './Review'
-import InquiryForm from './InquiryForm'
-import ExploreApartments from './exploreApartments'
+import DiscoverProperties from "../components/DiscoverProperties";
+import ExploreApartments from "../components/ExploreApartments";
+import WhyChooseUs from "../components/WhyChooseUs";
+import Review from "../components/Review";
+import InquiryForm from "../components/InquiryForm";
+import Blog from "./Blog";
+import RealEstate from "../components/RealEstate"
+import { getCategories } from "../Redux/features/categorySlice";
+import { useDispatch, useSelector } from 'react-redux'
+
 
 export default function Hero() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCategories())
+  }, )
+
+  const categories = useSelector((state) =>
+    state.category.categories
+  )
+
+  console.log(categories, "categoreis")
+
   const [searchType, setSearchType] = useState("buy");
 
   const handleSearchTypeChange = (type) => {
-    setSearchType(type);
+    setSearchType(type);[]
   };
 
   const getPlaceholderText = () => {
@@ -50,12 +64,16 @@ export default function Hero() {
                   placeholder={getPlaceholderText()}
                   className="bg-gray-200 text-[0.9rem] text-black sm:w-[65%] w-[20rem] rounded-2xl sm:p-4 p-5 mb-4 sm:mb-0  "
                 />
-                <select className="block appearance-none bg-gray-200 border w-[45%] border-gray-200 rounded-2xl text-gray-700 py-3 px-4 pr-8 mr-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                  <option className="hover:bg-[#EB6753] hover:text-white">Apartments</option>
+                <select className="hidden sm:block appearance-none bg-gray-200 border w-[45%] border-gray-200 rounded-2xl text-gray-700 py-3 px-4 pr-8 mr-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                  {/* <option className="hover:bg-[#EB6753] hover:text-white">{categories}</option>
                   <option>Bunglow</option>
                   <option>Houses</option>
                   <option>Office</option>
-                  <option>Villa</option>
+                  <option>Villa</option> */}
+
+                  {categories?.map((cat, index)=>{
+                    return <option key={index} value={cat?.name}>{cat?.name}</option>
+                  })}
                 </select>
               </form>
               <div className="flex mt-4 sm:mt-0">
@@ -70,15 +88,15 @@ export default function Hero() {
           <img src="images/firstHouse.png" className="w-[65rem] -ml-[10rem] mt-[5rem] r-0" />
         </div>
       </div>
-     < DiscoverProperties/>
-     <ExploreApartments/>  
+      < DiscoverProperties />
+      <ExploreApartments />
 
-<WhyChooseUs/>
-<Review/>
-<InquiryForm/>
+      <WhyChooseUs />
+      <Review />
+      <InquiryForm />
 
-<Blog/>
-<RealEstate/>
+      <Blog />
+      <RealEstate />
     </>
   );
 }

@@ -12,7 +12,7 @@ const Navbar = () => {
             <Link to="/about-us"><li className="text-[black]">About</li></Link>
             <li className="text-[black]">  <Link to="/buy-element">Buy</Link></li>
             <li className="text-[black]">  <Link to="/">Sell</Link></li>
-            <li className="text-[black]">  <Link to="/">Contact</Link></li>
+            <li className="text-[black]">  <Link to="/contact">Contact</Link></li>
             <li className="text-[black]">  <Link to="/Blog">Blogs</Link></li>
         </ul>
         <div className="flex pl-[5rem]  mt-4">
@@ -20,7 +20,7 @@ const Navbar = () => {
         <p className="font-semibold text-[0.85rem] hidden sm:block">Login / Register</p>
         </div>
         <div>
-            <button className="text-[white] rounded-2xl bg-black w-[12rem] p-4 font-semibold hidden sm:block">Add Property</button>
+            <Link to="/AddProperty"> <button className="text-[white] rounded-2xl bg-black w-[12rem] p-4 font-semibold hidden sm:block">Add Property</button></Link>
         </div>
 
         </div> 

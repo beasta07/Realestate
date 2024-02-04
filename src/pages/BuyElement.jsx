@@ -163,7 +163,7 @@ const BuyElement = () => {
             </div>
             <div className="w-[30%] rounded-xl shadow-md bg-white mt-[4rem] ml-[2rem] sm:block hidden">
             <div className="flex mt-5 pl-7">
-                <img src="images/reviewImage.jpg" className='w-[5rem]' />
+                <img src="/public/images/reviewImage01.jpg" className='w-[5rem]' />
                 <div className="ml-4">
                     <h1 className="font-semibold text-[0.85rem] mb-2">Leslie Alexander</h1>
                     <p className="text-[0.85rem]">Nintendo</p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import ForRent from "./ForRent";
 import ForSales from "./ForSales"; // Import ForSale component
 
@@ -10,6 +11,8 @@ const DiscoverProperties = () => {
   };
 
   return (
+
+
     <div className="container w-full mx-auto mt-20 p-5 sm:p-0">
       <div className="sm:flex justify-between">
         <div>

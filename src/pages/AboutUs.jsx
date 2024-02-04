@@ -1,7 +1,7 @@
 // import Navbar from "../components/Navbar"
 import { MdOutlineHolidayVillage } from "react-icons/md";
 import { MdOutlinePayment } from "react-icons/md";
-import WhyChooseUs from "./WhyChooseUs";
+import WhyChooseUs from "../components/WhyChooseUs";
 // import Footer from "../components/Footer";
 
 const AboutUs = () => {
