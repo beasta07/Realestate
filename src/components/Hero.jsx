@@ -19,7 +19,7 @@ const Hero = () => {
           </p>
         </div>
         <div className="">
-          <div className="w-[40%] ml-[1.1rem] flex justify-between rounded-t-lg sm:w-[15%] p-3 mx-auto font-bold text-[grey] container sm:ml-[11.78rem] bg-white">
+          <div className="w-[40%] ml-[1.1rem] flex justify-between rounded-t-lg sm:w-[12%] p-3 mx-auto font-bold text-[grey] container sm:ml-[12.6rem] bg-white">
             <h2>Buy</h2>
             <h2>Rent</h2>
             <h2>Sold</h2>
