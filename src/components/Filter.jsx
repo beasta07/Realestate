@@ -59,7 +59,7 @@ const Filter = () => {
         </div>
         <hr className="w-[62%] sm:w-[19%]" />
 
-        <div className="bg-white grid sm:grid-cols-4 sm:divide-y-0 divide-y sm:divide-x gap-[1rem] sm:gap-[9rem] rounded-r-lg rounded-bl-lg shadow-sm py-4 text-black">
+        <div className="bg-white grid sm:grid-cols-4 sm:divide-y-0 divide-y sm:divide-x gap-[1rem] sm:gap-[5rem] rounded-r-lg rounded-bl-lg shadow-sm py-4 text-black">
           <div>
             <h2 className="font-medium px-4 py-2">Search</h2>
             <input
@@ -70,7 +70,7 @@ const Filter = () => {
           </div>
           <div>
             <h2 className="font-medium px-4 py-2">Looking For</h2>
-            <div className='px-4'> <select className="block w-full  border border-white text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-orange-500">
+            <div className='px-4'> <select className="block w-full  border border-white text-gray-700 py-2 px-1 rounded leading-tight focus:outline-none">
               {/* <option>Aparment</option>
                             <option>House</option>
                             <option>Office</option> */}
@@ -82,8 +82,8 @@ const Filter = () => {
           </div>
           <div>
             <h2 className="font-medium px-4 py-2">Location</h2>
-            <div className="px-4">
-              <select className="block w-full border border-white text-gray-700 py-2 px-4 sm:mx-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+            <div className="px-0">
+              <select className="block w-full border border-white text-gray-700 py-2 px-1 sm:mx-4 rounded leading-tight focus:outline-none " id="grid-state">
                 <option className="focus:bg-orange-600">Kathmandu</option>
                 <option className="focus:bg-orange-600">Lalitpur</option>
                 <option className="focus:bg-orange-600">Bhaktapur</option>

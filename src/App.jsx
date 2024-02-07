@@ -19,6 +19,7 @@ import AboutUs from './pages/AboutUs'
 import BuyElement from './components/BuyElement'
 import Buy from './pages/Buy'
 import Sell from './pages/Sell'
+import LoginModal from './components/LoginModal'
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route path='/buy' element={<Buy />} />
           <Route path='/sell' element={<Sell />} />
         </Routes>
+        <LoginModal />
         <Footer />
       </BrowserRouter>
     </>

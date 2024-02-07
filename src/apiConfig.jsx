@@ -9,11 +9,9 @@
 //     Authorization: Bearer ${localStorage.getItem("token")},
 //   },
 // };
-
 // export const api = axios.create(apiConfig);
-
-
 // import { BASEURL } from "./Url";
+
 import axios from "axios";
 const apiUrl = "https://api.myraj.au/api/";
 

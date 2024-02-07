@@ -1,5 +1,5 @@
 // import React from 'react'
-import { FaFacebookF,FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
@@ -15,14 +15,18 @@ const Footer = () => {
             </div> */}
 
             <div className="container w-[100%] mx-auto sm:flex justify-between px-5 pt-16 sm:px-4 mt-[4rem] text-white">
-                <div className="pb-12 sm:pb-0"> 
-                    <h2 className="font-semibold text-[1.5rem] pb-8 text-orange-600">MyRAJ</h2>
+                <div className="pb-12 sm:pb-0">
+                    <div className="flex gap-5">
+                        <img src="/images/logo.jpg" className="h-16 rounded-lg" />
+                        <h2 className="font-semibold text-[1.5rem] pb-8 mt-4">MyRAJ</h2>
+                    </div>
+
                     <h4 className="text-sm text-[#bebdbd]">Address</h4>
                     <p className="font-medium pb-8">329 Queensberry Street, North<br /> Melbourne VIC 3051, Australia.</p>
                     <h4 className="text-sm text-[#bebdbd]">Total Free Customer Care</h4>
-                    <p className="font-medium pb-8">+(0) 123 050 945 02</p>
+                    <p className="font-medium pb-8">+61 4100 111 66</p>
                     <h4 className="text-sm text-[#bebdbd]">Need Live Support?</h4>
-                    <p className="font-medium">hi@MyRAJ.com</p>
+                    <p className="font-medium">info@myraj.au</p>
                 </div>
                 <div className="pb-12 sm:pb-0">
                     <h2 className="font-medium text-[1.1rem] pb-8">Popular Search</h2>
@@ -45,12 +49,12 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-                {/* <hr className="container w-[100%] mx-auto mt-3 dark:bg-gray-800"/> */}
-                <hr className="h-px bg-gray-200 border-0 sm:w-[77%] mx-auto dark:bg-gray-700 mt-10" />
+            {/* <hr className="container w-[100%] mx-auto mt-3 dark:bg-gray-800"/> */}
+            <hr className="h-px bg-gray-200 border-0 sm:w-[77%] mx-auto dark:bg-gray-700 mt-10" />
 
             <div className="container w-[100%] mx-auto sm:flex text-white justify-between px-5 sm:px-4 py-8">
                 <div>
-                    <h2 className="text-sm pb-4 sm:pb-0 text-[#bebdbd]">© Homez 2024 ib-themes - All rights reserved</h2>
+                    <h2 className="text-sm pb-4 sm:pb-0 text-[#bebdbd]">Copyright © 2024 All Rights Reserved by App Technologies</h2>
                 </div>
                 <div className="flex gap-5 justify-center">
                     <button className="font-medium">Follow Us</button>

@@ -4,9 +4,20 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+// import LoginModal from './LoginModal';
 
 const Navbars = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    // const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        // Add your login logic here
+        console.log('Email:', email);
+        console.log('Password:', password);
+        // You can dispatch an action, make an API call, etc.
+    };
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -16,18 +27,27 @@ const Navbars = () => {
         setMenuOpen(false);
     };
 
+    // const openLoginModal = () => {
+    //     setLoginModalOpen(true);
+    // };
+
+    // const closeLoginModal = () => {
+    //     setLoginModalOpen(false);
+    // };
+
     return (
         <div className='z-20 sm:ml-[0rem]'>
-            <div className="w-[100%] shadow">
+            <div className="w-[100%] shadow bg-white">
                 <div className=" hidden sm:sticky top-0 container w-[100%] mx-auto sm:flex  justify-between py-5 text-black font-medium bg-transparent">
-                    <div className="pt-4">
+                    <div className="pt-4 flex gap-5">
+                        <img src='/images/logo.jpg' className='h-14 -mt-5' />
                         <h2 className='font-semibold'>MyRAJ</h2>
                     </div>
                     <div className="pt-4">
                         <ul className="flex gap-12">
                             <Link to='/'><li>Home</li></Link>
                             <Link to='/aboutus'><li>About</li></Link>
-                            <Link to='/buy'><li>Buy</li></Link>
+                            <Link to='/buy'><li>Rent</li></Link>
                             <Link to='/sell'><li>Sell</li></Link>
                             <Link to='/mainblog'><li>Blog</li></Link>
                             <Link to='/contact'><li>Contact</li></Link>
@@ -35,7 +55,53 @@ const Navbars = () => {
                     </div>
                     <div className="flex">
                         <button className="pr-2"><FaRegUserCircle /></button>
-                        <button>Login/Register</button>
+                        <button onClick={toggleMenu}>Login/Register</button>
+                        {/* <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} /> */}
+                        {menuOpen && (
+                            <div className="fixed  inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                <div className="bg-white fixed p-8 w-[400px] rounded-lg z-60">
+                                    <div className="flex justify-end">
+                                        <button className="text-gray-500" onClick={closeMenu}>
+                                            <span className="text-2xl">&times;</span>
+                                        </button>
+                                    </div>
+                                    <h2 className="text-2xl font-semibold mb-4">Login/Register</h2>
+                                    <form>
+                                        <div className="mb-4">
+                                            <label htmlFor="email" className="block text-gray-600 text-sm font-medium">
+                                                Email:
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                className="w-full border border-gray-300 p-2 rounded-md"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                value={email}
+                                            />
+                                        </div>
+                                        <div className="mb-4">
+                                            <label htmlFor="password" className="block text-gray-600 text-sm font-medium">
+                                                Password:
+                                            </label>
+                                            <input
+                                                type="password"
+                                                id="password"
+                                                className="w-full border border-gray-300 p-2 rounded-md"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                value={password}
+                                            />
+                                        </div>
+                                        <button
+                                            type="button"
+                                            className="bg-orange-600 text-white px-4 py-2 rounded-md"
+                                            onClick={handleLogin}
+                                        >
+                                            Sign Up
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
                         <Link to='/addproperty'><button className="flex py-3 px-5 border-2 border-gray-400 rounded-xl text-black ml-8 hover:bg-orange-600 hover:text-white transition duration-300">Add Property<MdOutlineArrowOutward className="ml-2 mt-1" /></button></Link>
                     </div>
                 </div>
@@ -47,25 +113,25 @@ const Navbars = () => {
                     {menuOpen && (
                         <div className="sm:hidden transition ease-in duration-500 fixed top-0 left-0 h-screen w-[80%] bg-white shadow-lg">
                             <div className='flex justify-between py-7 px-4 w-[100%] mx-auto bg-[#fef5f2] shadow'>
-                            <h2 className='font-semibold text-[1.3rem] mt-2'>Welcome to MyRAJ</h2>
-                            <button onClick={closeMenu}><IoIosCloseCircle className='text-[2.6rem] text-orange-600'/></button>
+                                <h2 className='font-semibold text-[1.3rem] mt-2'>Welcome to MyRAJ</h2>
+                                <button onClick={closeMenu}><IoIosCloseCircle className='text-[2.6rem] text-orange-600' /></button>
                             </div> <hr />
                             <ul className="flex flex-col px-5 leading-[3.3rem] pt-9 pb-3">
                                 <Link to='/' onClick={closeMenu}><li>Home</li></Link>
                                 <Link to='/aboutus' onClick={closeMenu}><li>About</li></Link>
-                                <Link to='/buy' onClick={closeMenu}><li>Buy</li></Link>
+                                <Link to='/buy' onClick={closeMenu}><li>Rent</li></Link>
                                 <Link to='/sell' onClick={closeMenu}><li>Sell</li></Link>
                                 <Link to='/mainblog' onClick={closeMenu}><li>Blog</li></Link>
                                 <Link to='/contact' onClick={closeMenu}><li>Contact</li></Link>
                             </ul>
-                            <hr className='bg-gray-300 dark:bg-black h-px border-0'/>
+                            <hr className='bg-gray-300 dark:bg-black h-px border-0' />
                             <div className='p-8 leading-[3.3rem]'>
                                 <p className='text-sm'>Total Free Customer Care</p>
                                 <number className='font-semibold'>+977-980-6521436</number>
                                 <p className='text-sm'>Need Live Support?</p>
                                 <p className='font-semibold'>myRAJ@gmail.com</p>
                             </div>
-                        </div> 
+                        </div>
                     )}
                 </div>
                 <div>
