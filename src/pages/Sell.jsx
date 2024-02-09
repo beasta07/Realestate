@@ -3,6 +3,7 @@ import Filter2 from '../components/Filter2';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProperties } from '../Redux/features/PropertySlice';
+import { Link } from 'react-router-dom';
 
 const Sell = () => {
     const dispatch = useDispatch();
@@ -26,7 +27,9 @@ const Sell = () => {
                         </div>
                         <div className="container grid sm:grid-cols-2 gap-[1.7rem] mx-auto">
                             {saleProperties.map((property, index) => (
-                                 <SellComp key={index} property={property} />
+                                <Link key={index} to={`/sellelement/${property?._id}`}>
+                                 <SellComp  property={property} />
+                                 </Link>
                             ))}
                         </div>
                     </div>

@@ -1,19 +1,20 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 // import Buy from '../components/Buy';
 import { useSelector, useDispatch } from 'react-redux';
 import BuyComp from '../components/BuyComp';
 import Filter2 from '../components/Filter2';
 import { getProperties } from '../Redux/features/PropertySlice';
+import { Link } from 'react-router-dom';
 
 const Buy = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getProperties());
+        dispatch(getProperties());
     }, []);
-  
-    const properties = useSelector((state) => state.property.properties);
 
+    const properties = useSelector((state) => state.property.properties);
     const rentProperties = properties.filter(property => property.purpose === 'rent');
+    
     return (
         <>
             <div className='bg-[#F7F7F7] px-3 sm:px-0'>
@@ -26,7 +27,9 @@ const Buy = () => {
                         </div>
                         <div className="container grid sm:grid-cols-2 gap-[1.7rem] mx-auto">
                             {rentProperties.map((property, index) => (
-                                <BuyComp key={index} property={property} />
+                                <Link key={index} to={`/buyelement/${property?._id}`}>
+                                    <BuyComp property={property} />
+                                </Link>
                             ))}
                         </div>
                     </div>

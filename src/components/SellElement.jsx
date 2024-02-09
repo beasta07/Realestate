@@ -16,7 +16,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { getProperties } from '../Redux/features/PropertySlice';
 // import DiscoverProperties from '../components/DiscoverProperties';
 
-const BuyElement = () => {
+const SellElement = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   // const [property, setProperty] = useState(null);
@@ -195,7 +195,7 @@ const BuyElement = () => {
                 </div>
               </div>
 
-              <div className='px-5 h-[25rem]'>
+              <div className='pl-5 h-[25rem]'>
 
                 <input type='text' placeholder="Enter you Name" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
 
@@ -206,7 +206,7 @@ const BuyElement = () => {
                 <textarea type='text' placeholder="Any Questions" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
                 <input type="checkbox" className='mr-2' />
                 <label className='text-[0.85rem]'> i agree to Terms and conditions on this.</label>
-                <button className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block mb-[5.6rem] mt-4 mx-auto px-0">Register Now</button>
+                <button className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block mb-[5.6rem] mt-4 mx-auto">Register Now</button>
 
               </div>
 
@@ -219,7 +219,7 @@ const BuyElement = () => {
             <div className='p-5 pb-3 '>
               <h1 className='font-semibold text-[1.25rem] my-[2rem]'>Address</h1>
               <div className='sm:flex gap-[4rem]'>
-                <div >
+              <div >
                   <div className='flex gap-[6rem] justify-between  pb-3'>
                     <h1 className='font-semibold '>Province: </h1>
                     <p className='text-left'>{property?.location.province}</p>
@@ -264,4 +264,4 @@ const BuyElement = () => {
   );
 };
 
-export default BuyElement;
+export default SellElement;

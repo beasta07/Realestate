@@ -20,8 +20,8 @@ const Bestdeal = () => {
                         <p className="text-sm font-medium">Aliquam lacinia diam quis lacus euismod</p>
                     </div>
                     <div className="mt-8 sm:mt-5">
-                        <button onClick={() => handleButtonClick("rent")} className={`py-2 px-4   border-2 border-orange-600 rounded-lg mr-3 sm:mr-4 ${selectedButton === "rent" ? "bg-orange-600 text-white" : "bg-white border-gray-800 border-2  text-black"}`}>For Rent</button>
-                        <button onClick={() => handleButtonClick("sale")} className={`py-2 px-4 border-2 border-orange-600 bg-orange-600 rounded-lg ${selectedButton === "sale" ? "bg-orange-600 text-white" : "bg-white  border-2 border-gray-800 text-black"}`}>For Sale</button>
+                        <button onClick={() => handleButtonClick("rent")} className={`py-2 px-4   border-2 border-orange-600 rounded-lg mr-3 sm:mr-4 ${selectedButton === "rent" ? "bg-orange-900 text-white" : "bg-white border-gray-800 border-2  text-black"}`}>For Rent</button>
+                        <button onClick={() => handleButtonClick("sale")} className={`py-2 px-4 border-2 border-orange-600 bg-orange-600 rounded-lg ${selectedButton === "sale" ? "bg-orange-900 text-white" : "bg-white  border-2 border-gray-800 text-black"}`}>For Sale</button>
                     </div>
                 </div>
 

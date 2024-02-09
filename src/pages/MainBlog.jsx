@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Blogs from "../components/Blogs"
 import { useEffect } from "react";
 import {getBlogs} from "../Redux/features/BlogSlice";
+import { Link } from 'react-router-dom';
 
 const MainBlog = () => {
     const dispatch = useDispatch();
@@ -18,9 +19,10 @@ const MainBlog = () => {
                 <h2 className="font-semibold text-[1.8rem]">From Our Blog</h2>
                 <p className="pb-14">Aliquam lacinia diam quis lacus euismod</p>
                 <div className="grid sm:grid-cols-3 gap-3">
-                    {
-                        blogs.map((blog, index) => (
-                         <Blogs key={index} blog={blog} />
+                    {blogs.map((blog, index) => (
+                        <Link key={index} to={`/blogdiscription/${blog?._id}`}>
+                         <Blogs blog={blog} />
+                         </Link>
                         ))
                     }
 

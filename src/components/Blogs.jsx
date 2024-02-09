@@ -1,8 +1,21 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+// import { useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { getBlogs } from "../Redux/features/BlogSlice";
 
 function Blogs({ blog }) {
+  // const dispatch = useDispatch();
+  // // const { id } = useParams();
+  // // const [property, setProperty] = useState(null);
+  // useEffect(() => {
+  //   dispatch(getBlogs());
+  // }, [dispatch]);
+
+  // const blog = useSelector((state)=> state.blog.blogs);
+
   if (!blog) {
     return null; // Return null or a loading indicator if blog is undefined
   }
@@ -10,19 +23,19 @@ function Blogs({ blog }) {
   return (
     <div>
       <div className="text-left mb-[5rem] overflow-hidden rounded-xl">
-        <Link to={`/blog/${blog._id}`}>
-          {blog.images.length > 0 ? (
+        <Link to={`/blogdiscription/${blog?._id}`}>
+          {blog?.images && blog.images.length > 0 ? (
             <img
-              src={`https://api.myraj.au/${blog.images[0]}`} // Display the first image from the array
-              className="rounded-lg h-[13rem] w-[100%] object-cover"
+              src={`https://api.myraj.au/${blog?.images[0].replace('public/', '')}`}  // Display the first image from the array
+              className="rounded-lg h-[17rem] w-[25rem] object-cover hover:scale-105 transition duration-500"
               alt="Blog Image"
             />
           ) : (
-            <img src="images/blog1.jpg" className="rounded-xl hover:scale-105 transition duration-500 cursor-pointer object-cover" alt="Blog Cover" /> // Display a placeholder if no images
+            <img src="/images/blog2.jpg" className="rounded-xl hover:scale-105 transition duration-500 cursor-pointer object-cover" alt="Blog Cover" />
           )}
 
-          <p className="text-sm text-gray-500 pt-5">Living Room</p>
-          <h2 className="font-medium pt-2">{blog.title}</h2>
+          <p className="text-sm text-gray-500 pt-5 ">Living Room</p>
+          <h2 className="font-medium pt-2 ">{blog?.title}</h2>
         </Link>
       </div>
     </div>

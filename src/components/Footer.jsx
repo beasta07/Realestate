@@ -10,7 +10,7 @@ const Footer = () => {
                 <p>We don’t send spam so don’t worry.</p>
                 <div className="py-2 px-3 mt-9  bg-white sm:w-[50%] mx-4 sm:mx-auto rounded-lg flex justify-between">
                     <input type="text" placeholder="Your Email" className="px-5 w-[75%] text-black" />
-                    <button className="py-3 px-7 bg-orange-600 rounded-lg">Subscribe</button>
+                    <button className="py-3 px-7 bg-orange-900 rounded-lg">Subscribe</button>
                 </div>
             </div> */}
 
@@ -54,7 +54,7 @@ const Footer = () => {
 
             <div className="container w-[100%] mx-auto sm:flex text-white justify-between px-5 sm:px-4 py-8">
                 <div>
-                    <h2 className="text-sm pb-4 sm:pb-0 text-[#bebdbd]">Copyright © 2024 All Rights Reserved by App Technologies</h2>
+                    <h2 className="text-sm pb-4 sm:pb-0 text-[#bebdbd]">Copyright © 2024 All Rights Reserved by <a href="https://apptechnologies.co/" target="blank" className="font-medium text-gray-300">App Technologies</a></h2>
                 </div>
                 <div className="flex gap-5 justify-center">
                     <button className="font-medium">Follow Us</button>

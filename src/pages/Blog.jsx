@@ -1,23 +1,18 @@
 // import React from 'react'
 
 import Blogs from "../components/Blogs"
+import { useEffect } from "react";
+import {getBlogs} from "../Redux/features/BlogSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Blog = () => {
-    const blogData = [{
-        location: {
-            "ward": 4,
-            "province": "Bagmati",
-            "district": "Kathmandu",
-            "municipality": "Kathmandu",
-            "tole": "Thamel"
-        },
-        contactInfo: {
-            "email": "commercial@realestate.com",
-            "phone": "9876543210"
-        },
-        _id: "657564b40fa7f4914d3968c3",
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(getBlogs());
+    }, []);
 
-    }]
+    const blogs = useSelector((state) => state.blog.blogs);
+
     return (
         <div>
             <div className="container w-[100%] mx-auto sm:text-center sm:px-0 px-3 mt-[4rem]">
@@ -25,8 +20,8 @@ const Blog = () => {
                 <p className="pb-14">Aliquam lacinia diam quis lacus euismod</p>
                 <div className="grid sm:grid-cols-3 gap-3">
                     {
-                        blogData?.map((data, index) => {
-                            return <Blogs key={index} data={data} />;
+                        [blogs,blogs,blogs].map((blog, index) => {
+                            return <Blogs key={index} blog={blog} />;
                         })
                     }
 

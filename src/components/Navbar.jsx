@@ -24,7 +24,7 @@ const Navbar = () => {
             <div className="flex">
                 <button className="pr-2"><FaRegUserCircle /></button>
                 <button>Login/Register</button>
-                <button className="flex py-3 px-5 bg-white rounded-xl text-black ml-8 hover:bg-orange-600 hover:text-white transition duration-300">Add Property<MdOutlineArrowOutward className="ml-2 mt-1"/></button>
+                <button className="flex py-3 px-5 bg-white rounded-xl text-black ml-8 hover:bg-orange-900 hover:text-white transition duration-300">Add Property<MdOutlineArrowOutward className="ml-2 mt-1"/></button>
             </div>
         </div>  <hr className="h-px border-0 sm:w-[100%] mx-auto dark:bg-gray-800" />
 

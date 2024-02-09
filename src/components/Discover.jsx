@@ -4,8 +4,19 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import DiscoverComp from "./DiscoverComp";
+import { Link } from "react-router-dom";
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { getProperties } from '../Redux/features/PropertySlice';
 
 const Discover = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProperties());
+    }, []);
+
+    const properties = useSelector((state) => state.property.properties);
+
     const settings = {
         dots: true,
         infinite: true,
@@ -34,17 +45,20 @@ const Discover = () => {
                         <h2>Lorem ipsum dolor sit sit amet.</h2>
                     </div>
                     <div className="">
-                        <button className="flex sm:mt-[5rem] mt-9 font-medium">See All Properties <MdOutlineArrowOutward className="mt-1 ml-2" /></button>
+                        <Link to='/buy'>
+                            <button className="flex sm:mt-[5rem] mt-9 font-medium">See All Properties <MdOutlineArrowOutward className="mt-1 ml-2" /></button>
+                        </Link>
                     </div>
                 </div>
 
                 <div className="grid sm:grid-cols-3 grid-cols-1  mb-14">
                     <Slider {...settings} className="sm:w-[74rem] w-[20rem] ml-[1rem] sm:ml-[0rem]">
 
-                        {
-                            [1, 1, 1, 1, 1, 1].map(() => {
-                                return <DiscoverComp />;
-                            })
+                        {properties.map((property, index) => (
+                            <Link key={index} to={`/buyelement/${property?._id}`} >
+                            <DiscoverComp property={property}/>
+                        </Link>
+                        ))
                         }
 
                     </Slider>

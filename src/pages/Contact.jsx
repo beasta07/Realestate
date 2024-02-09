@@ -20,7 +20,7 @@ const Contact = () => {
                             <input className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Email" />
                             <h3 className="font-medium pb-2">First Name</h3>
                             <textarea className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Mesage here" />
-                            <button className="flex py-3 bg-orange-600 rounded-lg px-14 text-white">Submit <MdOutlineArrowOutward className="mt-1 ml-2" /></button>
+                            <button className="flex py-3 bg-orange-900 rounded-lg px-14 text-white">Submit <MdOutlineArrowOutward className="mt-1 ml-2" /></button>
                         </div>
                         <div className="sm:px-0 px-5">
                             <h2 className="font-medium text-[1.3rem] mt-8 sm:text-[2rem] sm:w-[60%] sm:mt-[28rem]">We'd Love To Hear From You.</h2>
@@ -39,7 +39,7 @@ const Contact = () => {
                     </div>
                     <div className="sm:flex mb-9">
                         <button className="mt-4 flex py-3 px-[7.5rem] sm:px-6 rounded-lg border-2 border-black hover:bg-black hover:text-white transition duration-300">Contact Us<MdOutlineArrowOutward className="mt-1 ml-2 hover:rotate-45 transition duration-300" /></button>
-                        <button className="mt-4 flex py-3 px-[7.1rem] sm:px-6 rounded-lg border-2 border-black bg-black text-white sm:ml-5 hover:bg-white hover:text-black transition duration-300"><MdOutlineLocalPhone className="mt-1 mr-2" />+61 4100 111 66</button>
+                        <button className="mt-4 flex py-3 px-[6.9rem] sm:px-6 rounded-lg border-2 border-black bg-black text-white sm:ml-5 hover:bg-white hover:text-black transition duration-300"><MdOutlineLocalPhone className="mt-1 mr-2" />+61 4100 111 66</button>
                     </div>
                 </div>
             </div>

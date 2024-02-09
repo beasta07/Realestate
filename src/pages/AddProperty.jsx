@@ -64,7 +64,7 @@ const AddProperty = () => {
                         <i><FaFileUpload className="text-[8rem] text-gray-400 mx-auto my-8"/></i>
                         <h2 className="font-semibold mb-4">Upload/Drag photos of your property</h2>
                         <p className="text-sm mb-7">Photos must be JPEG or PNG format and at least 2048x768</p>
-                        <input type="file" name="Browse File" placeholder="Browse File" className="py-3 px-5 w-full sm:w-[26%] border-2 border-black rounded-lg my-4" />
+                        <input type="file" name="Browse File" placeholder="Browse File" className="file:py-3 file:px-5 file:rounded-lg file:border-0 file:bg-gray-300 w-full sm:w-[23%] mx-auto border-black rounded-lg my-4" />
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ const AddProperty = () => {
             </div>
                 <div className="flex justify-end gap-5 py-7 text-white">
                     <button className="py-3 px-10 border-gray-600 border-2 text-black rounded-lg">Clear</button>
-                    <button className="py-3 px-10 bg-orange-600 rounded-lg">Save</button>
+                    <button className="py-3 px-10 bg-orange-900 rounded-lg">Save</button>
                 </div>
         </div>
     </div>

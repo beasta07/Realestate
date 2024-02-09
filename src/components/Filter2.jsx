@@ -1,23 +1,19 @@
 import React, { useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Slider from "@mui/material/Slider";
-// import { useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux"
 import { getCategories } from "../Redux/features/CategorySlice"
 import { getProperties } from '../Redux/features/PropertySlice';
 
 const Filter2 = () => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getProperties());
+        dispatch(getCategories());
     }, []);
 
     const properties = useSelector((state) => state.property.properties);
-
-    // const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getCategories());
-    }, []);
     const categories = useSelector((state) => state.category.categories);
 
     const [range, setRange] = React.useState([40000, 100000]);
@@ -33,28 +29,7 @@ const Filter2 = () => {
                     placeholder="search"
                     className="w-full mt-2 mb-5 px-4 py-3 rounded-lg  border-2 border-gray-300"
                 />
-                <div></div>
-                {/* <h2 className="font-semibold pb-2">Listing Status</h2>
-                <form className="px-3 leading-[2.3rem]">
-                    <label>
-                        <input
-                            type="radio"
-                            name="status"
-                            value="All"
-                            defaultChecked
-                        ></input>
-                        All
-                    </label>
-                    <br />
-                    <label>
-                        <input type="radio" name="status" value="Buy"></input> Sale
-                    </label>
-                    <br />
-                    <label>
-                        <input type="radio" name="status" value="Rent"></input> Rent
-                    </label>
-                    <br />
-                </form> */}
+
                 <h2 className="mt-4 font-semibold pb-2">Property Type</h2>
                 <form className="px-3 leading-[2.3rem]">
                     <label>
@@ -89,7 +64,7 @@ const Filter2 = () => {
                         <option key={index} value={cat?.location.tole}>{cat?.location.tole}</option>
                     ))}
                 </select>
-                <button className="flex py-3 bg-orange-600 px-[5.8rem] sm:px-[7.4rem] mt-8 rounded-lg text-[1.1rem] text-white"><IoSearchOutline className="mt-1 mr-3" />Search</button>
+                <button className="flex py-3 bg-orange-900 px-[5.8rem] sm:px-[7.4rem] mt-8 rounded-lg text-[1.1rem] text-white"><IoSearchOutline className="mt-1 mr-3" />Search</button>
 
             </div>
         </div>
