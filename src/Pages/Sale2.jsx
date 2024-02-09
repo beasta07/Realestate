@@ -16,7 +16,7 @@ const Sale2 = () => {
   return (
     <>
       <div className="bg-[#F7F7F7]">
-        <div className="flex container mx-auto w-[100%] gap-[9rem]">
+        <div className="flex container mx-auto w-[100%] gap-[2rem]">
           <Filter2 />
           <div className="bg-[#F7F7F7] ">
             <div className="text-[1.5rem]  font-semibold container w-[95%] mt-[2rem] mx-auto">

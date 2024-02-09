@@ -13,11 +13,14 @@ const Buy2 = () => {
 
   const properties = useSelector((state) => state.property.properties);
   const rentProperties = properties.filter(property => property.purpose === "rent")
+  const filterLocation = useSelector((state) => state.property.filterLocation);
+
+  const filteredProperties =filterLocation ? rentProperties.filter(property => property.location.district === filterLocation) : rentProperties;
 
   return (
     <>
       <div className="bg-[#F7F7F7]">
-        <div className="flex container mx-auto w-[100%] gap-[9rem]">
+        <div className="flex container mx-auto w-[100%] gap-[2rem]">
           <Filter2 />
 
           <div className="bg-[#F7F7F7] rounded-lg">
@@ -25,7 +28,7 @@ const Buy2 = () => {
               <h2>New York Home For Buy</h2>
             </div>
             <div className="p-6 sm:container sm:grid grid-cols-2 gap-[2.6rem] mx-auto">
-              {rentProperties.map((property, index) => (
+              {filteredProperties.map((property, index) => (
                <Link to={`/buyelement/${property?._id}`}>
                 <Buy key={index} property={property} />
                 </Link> 

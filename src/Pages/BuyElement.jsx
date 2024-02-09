@@ -180,7 +180,7 @@ const BuyElement = () => {
                 </h1>
                 <div className="sm:flex gap-[4rem]">
                   <div>
-                    <div className="flex  justify-between">
+                    <div className="flex gap-2 justify-between">
                       <h1 className="font-semibold">Property ID</h1>
                       <p >{property?._id}</p>
                     </div>
