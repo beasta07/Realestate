@@ -15,7 +15,7 @@ const Property = () => {
             Nullam sollicitudin blandit eros eu pretium. Nullam maximus
             ultricies auctor.
           </p>
-          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 bg-sky-500 hover:bg-blue-900 ">
+          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 hover:bg-black hover:text-white transition duration-300 ">
             Find a home
           </button>
         </div>
@@ -26,7 +26,7 @@ const Property = () => {
             Nullam sollicitudin blandit eros eu pretium. Nullam maximus
             ultricies auctor.
           </p>
-          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 bg-sky-500 hover:bg-blue-900">
+          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 hover:bg-black hover:text-white transition duration-300">
             Find a home
           </button>
         </div>
@@ -37,7 +37,7 @@ const Property = () => {
             Nullam sollicitudin blandit eros eu pretium. Nullam maximus
             ultricies auctor.
           </p>
-          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 bg-sky-500 hover:bg-blue-900">
+          <button className="w-[60%] mt-6 h-[3rem] rounded-full border-2 hover:bg-black hover:text-white transition duration-300">
             Find a home
           </button>
         </div>

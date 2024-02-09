@@ -14,7 +14,7 @@ const Sellingoption = () => {
                         <li className='flex'><TiArrowRightThick className='mt-1'/> Friendly host & Fast support</li>
                         <li className='flex'><TiArrowRightThick className='mt-1'/> Friendly host & Fast support</li>
                     </ul>
-                    <button className=' mt-5 w-[40%] h-[3.5rem] border-black font-bold border-2 rounded-full'>Learn More</button>    
+                    <button className=' mt-5 w-[40%] h-[3.5rem] hover:bg-red-500 transition duration-300 border-black font-bold border-2 rounded-full'>Learn More</button>    
                 </div>
                 <div>
                     <img className='w-[100%] mt-7' src='/image/three.png' />

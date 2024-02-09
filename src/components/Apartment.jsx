@@ -1,48 +1,86 @@
-import React from 'react'
-import { HiOutlineHome } from "react-icons/hi2";
+import { FaHouse } from "react-icons/fa6";
 import { MdApartment } from "react-icons/md";
-import { ImOffice } from "react-icons/im";
-import { MdOutlineHolidayVillage } from "react-icons/md";
-import { GiVillage } from "react-icons/gi";
+import { RiHomeOfficeFill } from "react-icons/ri";
+import { MdHolidayVillage } from "react-icons/md";
+import { SiBandsintown } from "react-icons/si";
 import { MdBungalow } from "react-icons/md";
-import { LuTent } from "react-icons/lu";
+import { FaWarehouse } from "react-icons/fa";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Apartment = () => {
-  return (
-    <div className=''>
-        <div className='w-[100%] container mx-auto px-7 sm:px-[4rem] mt-[5rem]'>
-            <h2 className='font-bold text-[1.5rem] sm:text-[2rem] '>Explore Apartment Types</h2>
-            <p>Get some Inspirations from 1800+ skills</p>
-        </div>
-        <div className='grid grid-cols-2 w-[90%] sm:w-[80%] sm:pb-[6rem] mt-8 pb-[47rem] sm:mt-[7rem] h-[16rem]  container mx-auto sm:grid-cols-5 gap-3'>
-          <div className='rounded-lg hover:bg-gray-900 px-8   p-4 bg-[#F7F7F7] '>
-          <HiOutlineHome className='rounded-full mt-4 p-3  text-[4rem] bg-white ' />
-            <h2 className='mt-[5.5rem]'>Houses</h2>
-            <p>22 Properties</p>
-          </div>
-          <div className=' rounded-lg px-8 container hover:bg-gray-900  p-4 bg-[#F7F7F7] '>
-          <MdApartment  className='rounded-full mt-4 p-3  text-[4rem] bg-white ' />
-            <h2 className='mt-[5.5rem]'>Houses</h2>
-            <p>22 Properties</p>
-          </div>
-          <div className=' rounded-lg px-8 container hover:bg-gray-900  p-4 bg-[#F7F7F7] '>
-          <ImOffice className='rounded-full mt-4 p-3  text-[4rem] bg-white ' />
-            <h2 className='mt-[5.5rem]'>Houses</h2>
-            <p>22 Properties</p>
-          </div>
-          <div className=' rounded-lg px-8 container hover:bg-gray-900  p-4 bg-[#F7F7F7] '>
-          <MdOutlineHolidayVillage className='rounded-full mt-4 p-3  text-[4rem] bg-white ' />
-            <h2 className='mt-[5.5rem]'>Houses</h2>
-            <p>22 Properties</p>
-          </div>
-          <div className=' rounded-lg px-8 container hover:bg-gray-900  p-4 bg-[#F7F7F7] '>
-          <GiVillage className='rounded-full mt-4 p-3  text-[4rem] bg-white ' />
-            <h2 className='mt-[5.5rem]'>Houses</h2>
-            <p>22 Properties</p>
-          </div>
-        </div>
-    </div>
-  )
-}
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
-export default Apartment
+  return (
+    <div className="bg-[#181A20] mt-9 text-white  ">
+      <div className="container w-[100%] mx-auto p-[2rem] pb-[8rem] ">
+        <div>
+          <h1 className="text-center text-[1.75rem] font-bold  ">
+            Explore Apartment Types
+          </h1>
+          <p className="text-center text-[0.8rem]">
+            Get some Inspirations from 1800+ skills
+          </p>
+          <div className=" grid grid-cols-5 gap-5 mt-[4rem]">
+            <Slider {...settings} className="sm:w-[550%] w-[20rem]">
+              <div className="hover:bg-white hover:text-black  p-5 rounded-lg ">
+                <FaHouse className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Houses</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+
+              <div className="hover:bg-white hover:text-black  p-5 rounded-lg w-[100%] ">
+                <MdApartment className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Apartments</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+              <div className="hover:bg-white hover:text-black p-5 rounded-lg w-[100%]">
+                <RiHomeOfficeFill className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Offices</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+              <div className="hover:bg-white hover:text-black p-5 rounded-lg w-[100%]">
+                <MdHolidayVillage className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Villa</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+              <div className="hover:bg-white hover:text-black p-5 rounded-lg w-[100%]">
+                <SiBandsintown className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Townhome</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+              <div className="hover:bg-white hover:text-black p-5 rounded-lg w-[100%]">
+                <MdBungalow className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Bungalow</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+              <div className="hover:bg-white hover:text-black p-5 rounded-lg w-[100%]">
+                <FaWarehouse className="rounded-full bg-[#303137] w-[4rem] h-[4rem] p-5 mb-5" />
+                <h1 className="font-semibold pb-2 py-[5rem] ">Loft</h1>
+                <p className="pb-4">22 properties</p>
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Apartment;

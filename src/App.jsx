@@ -1,4 +1,5 @@
 import './App.css'
+import AboutUs from './Pages/AboutUs'
 import Blogs2 from './Pages/Blogs2'
 import Buy2 from './Pages/Buy2'
 import Popular2 from './Pages/Popular2'
@@ -20,6 +21,8 @@ import Property from './components/Property'
 import Sellingoption from './components/Sellingoption'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import BuyElement from "./Pages/BuyElement"
+import Login from "./Pages/Login"
 
 function App() {
 
@@ -36,14 +39,18 @@ function App() {
       <Route path='/cities' element={<Cities/>} /> 
       <Route path='/popular2' element={<Popular2/>} /> 
       <Route path='/blogs2' element={<Blogs2/>} /> 
-      <Route path='/footer' element={<Footer/>} /> 
       <Route path='/loginpage' element={<Loginpage/>} /> 
       <Route path='/newaccount' element={<Newaccount/>} /> 
       <Route path='/sale2' element={<Sale2/>} /> 
       <Route path='/buy2' element={<Buy2/>} /> 
       <Route path='/filter2' element={<Filter2/>} /> 
+      <Route path='/aboutus' element={<AboutUs/>} /> 
+      <Route path='/buyelement/:id' element={<BuyElement/>} /> 
+      
     </Routes>
+      <Footer/>
     </BrowserRouter>
+    <Login />
     </>
   )
 }

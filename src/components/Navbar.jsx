@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdArrowOutward } from "react-icons/md";
 import { GrMenu } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import Loginpage from "./Loginpage"; // Assuming Loginpage is correctly implemented
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  const closeMenu = () => {
+    setMenuOpen(false);
+};
   return (
     <>
-      <div className="hidden sm:flex w-[100%] py-4 justify-center mx-auto container bg-transparent  gap-[8rem]">
+      <div className="hidden sm:flex w-[100%] py-4 justify-center mx-auto container bg-transparent gap-[8rem]">
         <div className="font-bold text-[2rem]">
           <h2>homez</h2>
         </div>
@@ -16,11 +25,11 @@ const Navbar = () => {
             <Link to="/">
               <li>Home</li>
             </Link>
-            <Link to="/">
+            <Link to="/aboutus">
               <li>About</li>
             </Link>
             <Link to="/buy2">
-              <li>Buy</li>
+              <li>Rent</li>
             </Link>
             <Link to="/sale2">
               <li>Sell</li>
@@ -30,10 +39,12 @@ const Navbar = () => {
             </Link>
           </ul>
         </div>
-        <div className="flex gap-1  font-medium text-[1rem] mt-0">
+        <div className="flex gap-1 font-medium text-[1rem] mt-0">
           <FaRegUserCircle className="mt-4" />
-          <h3 className="mt-3">Login / Register</h3>
-          <button className="px-7 font-semibold py-2  ml-[2rem] hover:bg-red-600 flex  rounded-full border-2">
+          <button onClick={toggleMenu}>Login / Register</button>
+          {menuOpen && <Loginpage />}
+          
+          <button className="px-7 font-semibold py-2 ml-[2rem] hover:bg-red-600 flex rounded-full border-2">
             Add Property
             <MdArrowOutward className="mt-1 ml-2 text-[1.5rem]" />
           </button>

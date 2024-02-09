@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Slider from "@mui/material/Slider";
+import { useDispatch, useSelector } from "react-redux";
+import { GetCategories } from "../Redux/features/categorySlice";
+import { getProperties } from "../Redux/features/PropertySlice";
+
+
 const Filter2 = () => {
-  const [range, setRange] = React.useState([1000,3000]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetCategories());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProperties());
+  }, []);
+
+  const categories = useSelector((state) => state.category.categories);
+  const properties = useSelector((state) => state.property.properties);
+  
+
+  const [range, setRange] = React.useState([1000, 3000]);
   function handleChanges(event, newValue) {
-     setRange(newValue);
+    setRange(newValue);
   }
   return (
     <div>
@@ -39,8 +58,8 @@ const Filter2 = () => {
         </form>
         <h2 className="mt-4 font-semibold">Property Type</h2>
         <form className="px-3 ">
-          <label>
-            <input
+          {/* <label> */}
+          {/* <input
               type="radio"
               name="status"
               value="All"
@@ -64,26 +83,35 @@ const Filter2 = () => {
           <br />
           <label>
             <input type="radio" name="status" value="Villa"></input> Villa
-          </label>
+          </label> */}
+          <select className="py-2 w-[100%] rounded-lg px-3 bg-gray-100 border-2 border-gray-300">
+            {categories?.map((cat, index) => (
+              <option key={index} value={cat?.name}>
+                {cat?.name}
+              </option>
+            ))}
+          </select>
           <br />
         </form>
-        <div className="mt-5" style = {{}}>
-         <h3> Price Range </h3>
-         <Slider value = {range} onChange={handleChanges} valueLabelDisplay="auto"/>
-         Range ( {range[0]} - {range[1]} )
-      </div>
+        <div className="mt-5" style={{}}>
+          <h3> Price Range </h3>
+          <Slider
+            value={range}
+            onChange={handleChanges}
+            valueLabelDisplay="auto"
+          />
+          Range ( {range[0]} - {range[1]} )
+        </div>
         <h2 className="mt-6 font-semibold">Location</h2>
         {/* <input type='text' placeholder='All Citie' className='w-full mt-2 mb-5 px-3 py-4 rounded-lg  bg-gray-100 border-2 border-gray-300'/> */}
         <select className="py-2 w-[100%] rounded-lg px-3 bg-gray-100 border-2 border-gray-300">
-          <option>All Cities</option>
-          <option>California</option>
-          <option>Los Angel</option>
-          <option>New York</option>
-          <option>New Jersey</option>
+          {properties?.map((cat, index) =>(
+            <option  key={index} value={cat?.location.tole}>{cat?.location.tole}</option>
+          ))}
+
         </select>
         <button
-          className="py-4 px-3 w-[50%] 
-             rounded-lg mt-5 text-white bg-orange-600"
+          className="py-4 px-3 w-[50%] rounded-lg mt-5 text-white bg-orange-600"
         >
           {/* <IoSearchOutline className='pt-2'/> */}
           Search

@@ -1,7 +1,17 @@
-import React from "react";
-import Blogs from "../components/Blogs";
+import React, { useEffect } from "react";
+import Blogs from "../components/Blogs"
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogs } from "../Redux/features/blogSlice"
 
 const Blogs2 = () => {
+  const dispatch = useDispatch();
+  useEffect(() =>{
+    dispatch(getBlogs());
+  }, []);
+
+  const blogs = useSelector((state) => state.blog.blogs);
+
+
   return (
     <div>
       <div className="mx-auto container mt-[5rem] text-center">
@@ -10,9 +20,9 @@ const Blogs2 = () => {
       </div>
       <div>
       <div className="p-6 sm:container sm:grid grid-cols-3 gap-6 mx-auto pb-9">
-            {[1, 1, 1].map(() => {
-              return <Blogs/>;
-            })}
+            {blogs.map((blog, index) => (
+              <Blogs key={index} blog={blog} />
+            ))}
           </div>
       </div>
     </div>

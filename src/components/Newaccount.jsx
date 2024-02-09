@@ -4,14 +4,14 @@ import { RxCross1 } from "react-icons/rx";
 
 const Newaccount = () => {
   return (
-        <div className="">
-      <div className="sm:w-[38%] justify-center mx-auto h-[35rem] rounded-xl ">
+        <div className=" pb-7">
+      <div className="sm:w-[100%] justify-center mx-auto h-[35rem] rounded-xl ">
         <div className="w-[100%] px-[2rem] mt-8 ">
-          <div className="flex justify-between font-semibold">
+          {/* <div className="flex justify-between font-semibold">
             <h2 className="text-[1.3rem] mt-[1.6rem]">Welcome To Realton</h2>
             <RxCross1 className="text-[2.2rem] mt-[1.8rem] rounded-full bg-[#F7F7F7] hover:bg-orange-200 p-2" />
-          </div>
-          <hr className="h-px bg-gray-200 mt-6 border-0 w-[100%] mx-auto dark:bg-gray-700" />
+          </div> */}
+          {/* <hr className="h-px bg-gray-200 mt-6 border-0 w-[100%] mx-auto dark:bg-gray-700" /> */}
           <h2 className="font-semibold mt-[2rem] text-[1.1rem]">Sign In <span className="ml-[2rem]">New Account</span></h2>
           <h3 className="mt-4 font-semibold">Email</h3>
           <input
