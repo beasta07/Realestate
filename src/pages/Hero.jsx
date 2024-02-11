@@ -8,7 +8,7 @@ import Review from "../components/Review";
 import InquiryForm from "../components/InquiryForm";
 import Blog from "./Blog";
 import RealEstate from "../components/RealEstate"
-import { getCategories } from "../Redux/features/categorySlice";
+import { getCategories } from "../Redux/features/CategorySlice";
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -16,7 +16,7 @@ export default function Hero() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCategories())
-  }, )
+  },[] )
 
   const categories = useSelector((state) =>
     state.category.categories
@@ -64,7 +64,7 @@ export default function Hero() {
                   placeholder={getPlaceholderText()}
                   className="bg-gray-200 text-[0.9rem] text-black sm:w-[65%] w-[20rem] rounded-2xl sm:p-4 p-5 mb-4 sm:mb-0  "
                 />
-                <select className="hidden sm:block appearance-none bg-gray-200 border w-[45%] border-gray-200 rounded-2xl text-gray-700 py-3 px-4 pr-8 mr-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                <select className="hidden sm:block appearance-none hover:bg-gray-200 border w-[45%] border-gray-200 rounded-2xl text-gray-700 py-3 px-4 pr-8 mr-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                   {/* <option className="hover:bg-[#EB6753] hover:text-white">{categories}</option>
                   <option>Bunglow</option>
                   <option>Houses</option>
@@ -72,7 +72,7 @@ export default function Hero() {
                   <option>Villa</option> */}
 
                   {categories?.map((cat, index)=>{
-                    return <option key={index} value={cat?.name}>{cat?.name}</option>
+                    return <option key={index} value={cat?.name} >{cat?.name}</option>
                   })}
                 </select>
               </form>

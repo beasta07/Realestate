@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import api from "../../apiConfig";
 
 const initialState = {
   isLoading: false,
   categories: [],
   error: null,
 };
-export const getCategories = createAsyncThunk("getCategories/Categories", async (data, thunkAPI) => {
+export const getCategories = createAsyncThunk("getCategories/Categories", async (thunkAPI) => {
     try {
-      const res = await axios.post("https://api.myraj.au/api/categories/search");
+      const res = await api.post("categories/search");
       console.log(res.data.data, "response of category")
       return res.data.data;
     } catch (error) {
@@ -16,7 +17,7 @@ export const getCategories = createAsyncThunk("getCategories/Categories", async 
     }
   }
 );
-const categorySlice = createSlice({
+const CategorySlice = createSlice({
   name: "category",
   initialState,
 
@@ -39,4 +40,4 @@ const categorySlice = createSlice({
 
 
 
-export default categorySlice.reducer 
+export default CategorySlice.reducer 

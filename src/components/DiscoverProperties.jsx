@@ -25,9 +25,7 @@ const DiscoverProperties = () => {
           <button
             onClick={() => handleButtonClick("rent")}
             className={`border-2 rounded-lg sm:px-5 sm:py-0 px-3 py-3 my-1 text-sm  ${
-              selectedButton === "rent"
-                ? "bg-black text-white"
-                : "bg-white text-black"
+              selectedButton === "rent" ? "bg-black text-white"  : "bg-white text-black"
             }`}
           >
             For Rent

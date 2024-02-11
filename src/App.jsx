@@ -6,7 +6,7 @@ import Hero from './pages/Hero'
 import Navbar from './components/Navbar'
 import AboutUs from './pages/AboutUs'
 import Blog from './pages/Blog'
-import BuyElement from './pages/BuyElement'
+import BuyElement from './components/BuyElement'
 import InquiryForm from './components/InquiryForm'
 import RealEstate from './components/RealEstate'
 import Review from './components/Review'
@@ -15,7 +15,9 @@ import WhyChooseUs from './components/WhyChooseUs'
 import Contact from './pages/Contact'
 import BlogDiscription from './pages/BlogDiscription'
 import AddProperty from "./pages/AddProperty";
-
+import Buy from "./pages/Buy"
+import SellElement from "./components/SellElement";
+import Sell from "./pages/Sell";
 function App() {
 
   return (
@@ -33,13 +35,17 @@ function App() {
           <Route path="/Blog" element={<Blog />} />
           <Route path="/RealEstate" element={<RealEstate />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/buy-element" element={<BuyElement />} />
+          <Route path="/buy" element={<Buy />} />
+          <Route path="/sell" element={<Sell />} />
+
+
+          <Route path="/buyelement/:id" element={<BuyElement />} />
           <Route path="/InquiryForm" element={<InquiryForm />} />
           {/* <Route path="/ExploreApartments" element={<ExploreApartments />} /> */}
           <Route path="/blog/:id" element={<BlogDiscription />} />
           <Route path="/AddProperty" element={<AddProperty />} />
           <Route path="/for-rent" element={<BuyElement />} />
-          <Route path="/for-sale" element={<BuyElement />} />
+          <Route path="/sellelement/:id" element={<SellElement />} />
           <Route path="/blog-description" element={<BlogDiscription />} />
 
       </Routes>

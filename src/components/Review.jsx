@@ -70,7 +70,7 @@ const Review = () => {
               </div>
               <hr/>
               <div className="flex mt-5">
-                <img src="/public/images/reviewImage02.jpg" />
+                <img src="images/reviewImage02.jpg" />
                 <div className="ml-4">
                     <h1 className="font-semibold text-[0.85rem] mb-2">Katie Smith</h1>
                     <p className="text-[0.85rem]">Waystar RoyCo</p>

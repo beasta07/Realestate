@@ -1,4 +1,8 @@
+import {  useSelector } from 'react-redux'
 const InquiryForm = () => {
+  const categories = useSelector((state) =>
+  state.category.categories
+)
   return (
     <div className=" flex justify-between pt-[5rem] container w-[100%] mx-auto mb-[4rem]">
       <div className="sm:p-0 p-3">
@@ -13,11 +17,13 @@ const InquiryForm = () => {
               className="block bg-transparent    border sm:w-[30rem] w-[23rem] mt-6 mb-10 border--200 rounded-xl text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 "
               id="grid-state"
             >
-              <option>Apartments</option>
+              {/* <option>Apartments</option>
               <option>Bunglow</option>
               <option>Houses</option>
-              <option>Office</option>
-              <option>Villa</option>
+              <o on>Villa</o> */}
+                                {categories?.map((cat, index)=>{
+                    return <option key={index} value={cat?.name} >{cat?.name}</option>
+                  })}
             </select>
             <div className="sm:flex gap-5">
               <div>
