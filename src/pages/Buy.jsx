@@ -1,10 +1,9 @@
-import { useEffect } from 'react'
-// import Buy from '../components/Buy';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getProperties } from '../Redux/features/PropertySlice';
 import BuyComp from '../components/BuyComp';
 import Filter2 from '../components/Filter2';
-import { getProperties } from '../Redux/features/PropertySlice';
-import { Link } from 'react-router-dom';
 
 const Buy = () => {
     const dispatch = useDispatch();
@@ -14,6 +13,9 @@ const Buy = () => {
 
     const properties = useSelector((state) => state.property.properties);
     const rentProperties = properties.filter(property => property.purpose === 'rent');
+    const filterLocation = useSelector((state) => state.property.filterLocation); // Change this to get filterLocation from Redux store
+
+    const filteredProperties = filterLocation ? rentProperties.filter(property => property.location.district === filterLocation) : rentProperties;
     
     return (
         <>
@@ -26,7 +28,7 @@ const Buy = () => {
                             <h2 className='pb-5'>For Rent</h2>
                         </div>
                         <div className="container grid sm:grid-cols-2 gap-[1.7rem] mx-auto">
-                            {rentProperties.map((property, index) => (
+                            {filteredProperties.map((property, index) => (
                                 <Link key={index} to={`/buyelement/${property?._id}`}>
                                     <BuyComp property={property} />
                                 </Link>

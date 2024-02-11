@@ -25,7 +25,7 @@ const PropertyBuy = () => {
                     <img src="/images/propertyBuy.svg" className="w-[55%] mt-5 p-8 mx-auto"/>
                     <h2 className="font-medium text-[1.3rem]">Rent a property</h2>
                     <p className="text-sm px-5 py-5">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                    <Link to='/'><button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a rental<MdOutlineArrowOutward className="mt-1 mx-2" /></button></Link>
+                    <Link to='/buy'><button className="flex mx-auto mb-8 border-gray-500 py-4 px-7 border-2 rounded-xl font-medium hover:bg-black hover:text-white transition duration-300">Fond a rental<MdOutlineArrowOutward className="mt-1 mx-2" /></button></Link>
                 </div>
             </div>
         </div>

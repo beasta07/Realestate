@@ -8,7 +8,7 @@ const BuyComp = ({ property }) => {
 
   return (
     <>
-      <div className="rounded-lg bg-white shadow hover:scale-105 transition duration-500">
+      <div className="rounded-lg bg-white shadow hover:scale-105 transition duration-500 sm:w-[23.5rem]">
 
         {property.images.length > 0 ? (
           <img

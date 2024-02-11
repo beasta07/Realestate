@@ -1,36 +1,45 @@
-// import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import ApartmentType from './components/ApartmentType'
-import BuySell from './components/BuySell'
-import Discover from './components/Discover'
-import Footer from './components/Footer'
-import Hero from './components/Hero'
-import PropertyBuy from './components/PropertyBuy'
-import Bestdeal from './pages/Bestdeal'
-import Blog from './pages/Blog'
-import { CarouselWithContent } from './pages/CarouselWithContent'
-import Navbars from './components/Navbars'
-import Contact from './pages/Contact'
-import MainBlog from './pages/MainBlog'
-import AddProperty from './pages/AddProperty'
-import BlogDiscription from './pages/BlogDiscription'
-import AboutUs from './pages/AboutUs'
-import BuyElement from './components/BuyElement'
-import Buy from './pages/Buy'
-import Sell from './pages/Sell'
-import LoginModal from './components/LoginModal'
-import SellElement from './components/SellElement'
-import DiscoverComp from './components/DiscoverComp'
-import Register from './pages/Register'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import './App.css';
+import ApartmentType from './components/ApartmentType';
+import BuySell from './components/BuySell';
+import Discover from './components/Discover';
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import PropertyBuy from './components/PropertyBuy';
+import Bestdeal from './pages/Bestdeal';
+import Blog from './pages/Blog';
+import { CarouselWithContent } from './pages/CarouselWithContent';
+import Navbars from './components/Navbars';
+import Contact from './pages/Contact';
+import MainBlog from './pages/MainBlog';
+import AddProperty from './pages/AddProperty';
+import BlogDiscription from './pages/BlogDiscription';
+import AboutUs from './pages/AboutUs';
+import BuyElement from './components/BuyElement';
+import Buy from './pages/Buy';
+import Sell from './pages/Sell';
+import LoginModal from './components/LoginModal';
+import SellElement from './components/SellElement';
+import DiscoverComp from './components/DiscoverComp';
+import Register from './pages/Register';
+import { useEffect } from 'react';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
         <Navbars />
-        
+        <ScrollToTop />
         <Routes>
           <Route path='/carousel' element={<CarouselWithContent />} />
           <Route path='/' element={<Hero />} />
@@ -56,7 +65,7 @@ function App() {
         <Footer />
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

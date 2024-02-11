@@ -2,12 +2,12 @@
 
 import Blogs from "../components/Blogs"
 import { useEffect } from "react";
-import {getBlogs} from "../Redux/features/BlogSlice";
+import { getBlogs } from "../Redux/features/BlogSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Blog = () => {
     const dispatch = useDispatch();
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getBlogs());
     }, []);
 
@@ -19,12 +19,9 @@ const Blog = () => {
                 <h2 className="font-semibold text-[1.8rem]">From Our Blog</h2>
                 <p className="pb-14">Aliquam lacinia diam quis lacus euismod</p>
                 <div className="grid sm:grid-cols-3 gap-3">
-                    {
-                        [blogs,blogs,blogs].map((blog, index) => {
-                            return <Blogs key={index} blog={blog} />;
-                        })
-                    }
-
+                    {blogs.map((blog, index) => (
+                         <Blogs key={index} blog={blog} />
+                    ))}
                 </div>
             </div>
         </div>

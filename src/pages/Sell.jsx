@@ -12,8 +12,10 @@ const Sell = () => {
     }, []);
 
     const properties = useSelector((state)=> state.property.properties);
-
     const saleProperties = properties.filter(properties => properties.purpose === 'sale');
+    const filterLocation = useSelector((state) => state.property.filterLocation);
+
+    const filteredProperties = filterLocation ? saleProperties.filter(property => property.location.district === filterLocation) : saleProperties;
 
     return (
         <>
@@ -26,7 +28,7 @@ const Sell = () => {
                             <h2 className='pb-5'>For Sell</h2>
                         </div>
                         <div className="container grid sm:grid-cols-2 gap-[1.7rem] mx-auto">
-                            {saleProperties.map((property, index) => (
+                            {filteredProperties.map((property, index) => (
                                 <Link key={index} to={`/sellelement/${property?._id}`}>
                                  <SellComp  property={property} />
                                  </Link>

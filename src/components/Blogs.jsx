@@ -1,21 +1,9 @@
 // import React from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-// import { getBlogs } from "../Redux/features/BlogSlice";
 
 function Blogs({ blog }) {
-  // const dispatch = useDispatch();
-  // // const { id } = useParams();
-  // // const [property, setProperty] = useState(null);
-  // useEffect(() => {
-  //   dispatch(getBlogs());
-  // }, [dispatch]);
-
-  // const blog = useSelector((state)=> state.blog.blogs);
-
+  
   if (!blog) {
     return null; // Return null or a loading indicator if blog is undefined
   }

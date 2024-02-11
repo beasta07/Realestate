@@ -44,7 +44,7 @@ const SellElement = () => {
         <div className="sm:flex justify-between sm:px-0 px-1">
           <div>
             <h1 className="text-[2rem] font-semibold">{property?.name}</h1>
-            <p>New York City, CA, USA</p>
+            <p>{property?.location.tole}, {property?.location.district}</p>
             <div className="flex ">
               <div className="rounded-full bg-[#EB6753] w-[1rem] h-[1rem] mt-4 mr-2"></div>
               <div className="text-[#EB6753] mr-4 divide-y">For {property?.purpose}</div>
@@ -167,7 +167,7 @@ const SellElement = () => {
                   <div>
                     <div className='flex gap-3 justify-between  pb-3 '>
                       <h1 className='font-semibold '>Price: </h1>
-                      <p className='text-left'>{property?.price}</p>
+                      <p className='text-left'>Rs. {property?.price}</p>
                     </div>
                     <div className='flex gap-3 justify-between pb-3'>
                       <h1 className='font-semibold mr-[4.7rem]'>Property Type</h1>

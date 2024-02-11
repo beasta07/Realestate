@@ -3,7 +3,7 @@ import { VscAccount } from "react-icons/vsc";
 
 const Register = () => {
     return (
-        <div className="pb-9 containter w-[50%] mx-auto">
+        <div className="pb-9 containter sm:w-[50%] mx-auto">
             <h2 className=" text-center mt-9 font-semibold text-[1.4rem] text-orange-900">
                 Welcome To Registration Page
             </h2>
@@ -76,8 +76,8 @@ const Register = () => {
                         />
                     </div>
                     <div className="col-span-2 w-[100%] py-6">
-                        <button className="transition duration-300 text-white text-[1.2rem] font-semibold py-4 rounded-xl bg-orange-900">
-                            <h2 className="flex mx-[15rem]"> <VscAccount className="mt-1 mr-2" /> Register Account</h2>
+                        <button className="transition duration-300 text-white text-[1.2rem] font-semibold py-4 rounded-xl bg-orange-900 w-full">
+                            <h2 className="flex sm:mx-[15rem]"> <VscAccount className="mt-1 sm:mr-2 sm:ml-0 ml-24" /> Register Account</h2>
                         </button>
                     </div>
                 </div>

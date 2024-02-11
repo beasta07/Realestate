@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from "react-redux"
 import { getCategories } from "../Redux/features/CategorySlice"
-import { getProperties } from "../Redux/features/PropertySlice"
+import { getProperties} from "../Redux/features/PropertySlice"
 
 const Filter = () => {
   const dispatch = useDispatch();

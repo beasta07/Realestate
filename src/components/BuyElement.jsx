@@ -44,7 +44,7 @@ const BuyElement = () => {
         <div className="sm:flex justify-between sm:px-0 px-1">
           <div>
             <h1 className="text-[2rem] font-semibold">{property?.name}</h1>
-            <p>New York City, CA, USA</p>
+            <p>{property?.location.tole}, {property?.location.district}</p>
             <div className="flex ">
               <div className="rounded-full bg-[#EB6753] w-[1rem] h-[1rem] mt-4 mr-2"></div>
               <div className="text-[#EB6753] mr-4 divide-y">For {property?.purpose}</div>
@@ -219,22 +219,22 @@ const BuyElement = () => {
             <div className='p-5 pb-3 '>
               <h1 className='font-semibold text-[1.25rem] my-[2rem]'>Address</h1>
               <div className='sm:flex gap-[4rem]'>
-                <div >
-                  <div className='flex gap-[6rem] justify-between  pb-3'>
+              <div >
+                  <div className='flex gap-[5.9rem]  pb-3'>
                     <h1 className='font-semibold '>Province: </h1>
-                    <p className='text-left'>{property?.location.province}</p>
+                    <p className='text-'>{property?.location.province}</p>
                   </div>
-                  <div className='hidden  sm:flex gap-[6rem] justify-between  pb-3 '>
+                  <div className='hidden  sm:flex gap-[6.7rem]  pb-3 '>
                     <h1 className='font-semibold '>District: </h1>
-                    <p className='text-left'>{property?.location.district}</p>
+                    <p className='text-'>{property?.location.district}</p>
                   </div>
-                  <div className='hidden  sm:flex gap-[6rem] justify-between pb-3'>
+                  <div className='hidden  sm:flex gap-[4rem] pb-3'>
                     <h1 className='font-semibold '>Municipality: </h1>
-                    <p className='text-left'>{property?.location.municipality}</p>
+                    <p className='text- l'>{property?.location.municipality}</p>
                   </div>
 
                 </div>
-                <div>
+                {/* <div>
                   <div className='flex gap-[2rem]  pb-3'>
                     <h1 className='font-semibold mr-24'>Address</h1>
                     <p>10 Downing Street</p>
@@ -248,7 +248,7 @@ const BuyElement = () => {
                     <p>Greater London</p>
                   </div>
 
-                </div>
+                </div> */}
               </div>
             </div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14134.395666697252!2d85.32008!3d27.6678783!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19c82b81d77d%3A0x879326313b815595!2sApp%20Technologies%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1706590703142!5m2!1sen!2snp" width="100%" height="300" style={{ border: 0, }} allowfullscreen="" loading="lazy" className=' p-4 rounded-lg pb-5  sm:w-[100%]  ' ></iframe>

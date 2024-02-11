@@ -22,7 +22,7 @@ const SellComp = ({ property }) => {
                         /> // Display a placeholder if no images
                     )}
                     <h2 className="px-5 font-medium pt-5 pb-1 line-clamp-1">{property.name}</h2>
-                    <p className="px-5 text-sm">{property.location.district}</p> <hr className="px-5 my-3" />
+                    <p className="px-5 text-sm">{property?.location.tole}, {property?.location.district}</p> <hr className="px-5 my-3" />
               
                 <div className="flex px-5 justify-between pb-4">
                     <p className="text-sm">{property.purpose}</p>
