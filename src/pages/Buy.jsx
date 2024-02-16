@@ -13,7 +13,6 @@ const Buy = () => {
   useEffect(() => {
     dispatch(getProperties())
   }, [])
-
   const properties = useSelector((state) => state.property.properties)
   const rentProperties = properties.filter(property => property.purpose === 'rent');
   const filterLocation = useSelector((state) => state.property.filterLocation);

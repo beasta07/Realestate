@@ -1,14 +1,23 @@
 import { useState } from "react";
-
+import { useDispatch, useSelector } from 'react-redux'
+import { getProperties } from "../Redux/features/propertySlice";
+import { useEffect } from "react";
 import ForRent from "./ForRent";
 import ForSales from "./ForSales"; // Import ForSale component
+import { Link } from "react-router-dom";
 
 const DiscoverProperties = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProperties())
+  }, [])
   const [selectedButton, setSelectedButton] = useState("rent"); // Default selected button is 'rent'
-
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName === selectedButton ? "" : buttonName); // Toggle selected button
   };
+  const properties = useSelector((state) => state.property.properties)
+  const rentProperties = properties.filter(property => property.purpose === 'rent');
+  const saleProperties = properties.filter(property => property.purpose === 'sale');
 
   return (
 
@@ -45,11 +54,16 @@ const DiscoverProperties = () => {
       <div className="grid sm:grid-cols-4  grid-cols-1 pb-[8rem] gap-[2rem]">
         {selectedButton === 'rent' ? (
           // Render ForRent component when selectedButton is 'rent'
-          [1, 1, 1, 1, 1, 1].map((_, index) => <ForRent key={index} />)
+        rentProperties.map((property, index) =>                
+         (<Link key={index} to={`/buyelement/${property?._id}`}  >
+        <ForRent property={property} />
+      </Link>))
         ) : (
-          // Render ForSale component when selectedButton is 'sale'
-          [1, 1, 1, 1, 1, 1].map((_, index) => <ForSales key={index} />)
-        )}
+          saleProperties.map((property, index) => 
+          (<Link key={index} to={`/buyelement/${property?._id}`}  >
+          <ForSales property={property} />
+        </Link>)
+        ))}
       </div>
     </div>
   );

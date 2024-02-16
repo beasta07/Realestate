@@ -3,7 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import Slider from "@mui/material/Slider";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../Redux/features/CategorySlice";
-import { getProperties, filterProperties, setFilterLocation  } from "../Redux/features/propertySlice";
+import { getProperties, filterProperties, setFilterLocation } from "../Redux/features/propertySlice";
 
 const Filter = () => {
     const dispatch = useDispatch();
@@ -14,9 +14,10 @@ const Filter = () => {
     }, []);
 
     const categories = useSelector((state) => state.category.categories);
-    // const properties = useSelector((state) => state.property.properties);
     const [range, setRange] = useState([40000, 100000]);
     const [searchLocation, setSearchLocation] = useState(""); // State to hold the input location
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [allChecked, setAllChecked] = useState(true); // State to manage the "All" checkbox
 
     function handleChanges(event, newValue) {
         setRange(newValue);
@@ -25,19 +26,42 @@ const Filter = () => {
     function handleSearch() {
         const data = {
             priceRange: range,
+            category: selectedCategories,
+            populate:'category'
         };
+
         dispatch(filterProperties(data));
         dispatch(setFilterLocation(searchLocation));
     }
 
     useEffect(() => {
         const data = {
-          location: {
-            district: searchLocation,
-          },
+            location: {
+                district: searchLocation,
+            },
         };
         dispatch(filterProperties(data));
-      }, [searchLocation]);
+    }, [searchLocation]);
+
+    const handleCheckboxChange = (event) => {
+        const { value, checked } = event.target;
+
+        if (value === "All") {
+            setAllChecked(checked);
+            if (checked) {
+                setSelectedCategories(categories.map(cat => cat._id));
+            } else {
+                setSelectedCategories([]);
+            }
+        } else {
+            const newSelectedCategories = checked
+                ? [...selectedCategories, value]
+                : selectedCategories.filter((category) => category !== value);
+
+            setSelectedCategories(newSelectedCategories);
+            setAllChecked(false);
+        }
+    };
 
     return (
         <div className="px-3 sm:px-0">
@@ -58,14 +82,22 @@ const Filter = () => {
                             type="checkbox"
                             name="status"
                             value="All"
-                            defaultChecked
-                        ></input>
+                            checked={allChecked}
+                            onChange={handleCheckboxChange}
+                        />
                         All
                     </label>
                     <br />
                     {categories?.map((cat, index) => (
                         <label key={index}>
-                            <input type="checkbox" value={cat?.name} />{cat?.name}<br />
+                            <input
+                                type="checkbox"
+                                value={cat?._id}
+                                checked={selectedCategories.includes(cat?._id)}
+                                onChange={handleCheckboxChange}
+                            />
+                            {cat?.name}
+                            <br />
                         </label>
                     ))}
                     <br />
@@ -76,7 +108,7 @@ const Filter = () => {
                     Range ( $ {range[0]} - $ {range[1]} )
                 </div>
 
-                <button 
+                <button
                     className="flex py-3 bg-orange-900 px-[5.8rem] sm:px-[7.4rem] mt-8 rounded-lg text-[1.1rem] text-white"
                     onClick={handleSearch} // Call handleSearch on button click
                 >

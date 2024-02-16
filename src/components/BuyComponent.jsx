@@ -16,10 +16,10 @@ const BuyComponent = ({ property }) => {
     <>
       <div className="pb-5 ">
         <div className="bg-white sm:w-[100%]  rounded-xl pb-6 shadow-md hover:scale-105 transition-transform duration-300 ">
-          <img className="rounded-t-lg h-[13rem] w-[28rem] " src={imageUrl}  alt=""/> {/* Modified line */}
-            <h2 className="font-semibold mt-5 ml-4">{property.name}</h2>
-          <p className="text-gray-700 ml-4 text-[0.85rem] py-3">{property.location.tole},{property.location.district} </p>
-          <div className="flex ml-5">
+           <img className="rounded-t-lg h-[13rem] w-[28rem] " src={imageUrl}  alt=""/> {/* Modified line */}
+             <h2 className="font-semibold mt-5 ml-4">{property.name}</h2>
+          <p  className="text-gray-700 ml-4 text-[0.85rem] py-3">{property.location.tole},{property.location.district} </p>
+          <div                                                                                                                                        className="flex ml-5">
             <FaBed className="mt-1 text-[1rem] text-grey" /> <p className="text-[0.8rem] ml-2 mt-1 w-[2.5rem]">{property.room} Bed</p>
             <FaShower className="mt-1 text-[1rem] ml-4" /> <p className="text-[0.8rem] ml-1 mt-1 w-[6rem]">{property.bathroom} bathrooms</p>
             <RiPinDistanceFill className="mt-1 text-[1rem] ml-4" /> <p className="text-[0.8rem] ml-2 mt-1 w-[ ]">{property.area} Sqft</p>

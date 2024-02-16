@@ -1,11 +1,12 @@
 // import React from 'react'
 
-import BuyComponent from '../components/BuyComponent';
+// import BuyComponent from '../components/BuyComponent';
 import Filter from '../components/Filter';
 import { useDispatch, useSelector } from 'react-redux'
 import { getProperties } from "../Redux/features/propertySlice";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import SellComponent from '../components/SellComponent';
 
 const Sell = () => {
 
@@ -32,7 +33,7 @@ const Sell = () => {
             <div className="p-6 sm:container sm:grid grid-cols-2 gap-[2.6rem] mx-auto">
               {filteredProperties.map((property, index) => (
                 <Link to={`/sellelement/${property?._id}`} key={index} >
-                  <BuyComponent property={property} />
+                  <SellComponent property={property} />
                 </Link>
               ))}
             </div>

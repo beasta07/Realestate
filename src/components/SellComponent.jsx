@@ -3,6 +3,7 @@ import { FaBed } from "react-icons/fa";
 import { FaShower } from "react-icons/fa";
 import { RiPinDistanceFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types"
 
 const SellComponent = ({ property }) => {
   // Get the first image from the images array
@@ -36,5 +37,7 @@ const SellComponent = ({ property }) => {
     </>
   )
 }
-
+SellComponent.propTypes ={
+  property: PropTypes.object,
+};
 export default SellComponent;

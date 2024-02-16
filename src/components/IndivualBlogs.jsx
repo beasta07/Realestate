@@ -1,17 +1,49 @@
-import {Link} from "react-router-dom"
-const IndivualBlogs = () => {
+// import React from 'react';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+// import { useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { getBlogs } from "../Redux/features/BlogSlice";
+
+function IndivualBlogs({ blog }) {
+  // const dispatch = useDispatch();
+  // // const { id } = useParams();
+  // // const [property, setProperty] = useState(null);
+  // useEffect(() => {
+  //   dispatch(getBlogs());
+  // }, [dispatch]);
+
+  // const blog = useSelector((state)=> state.blog.blogs);
+
+  if (!blog) {
+    return null; // Return null or a loading indicator if blog is undefined
+  }
+
   return (
     <div>
-    <div className="container w-[100%] mx-auto py-5 ">
-      <div className="rounded-lg overflow-hidden ">
-        <Link to='/blog-description'>
-        <img className="w-[25rem] rounded-lg hover:scale-105 transition-transform duration-300" src="images/blog-1.jpg" />
-            <p className="pt-5 pb-2 text-[#8D8D8D] text-[0.8rem]">Living Room</p>
-            <p className="pb-3 font-semibold w-[100%]">Private Contemporary Home Balancing Openness</p></Link>
-          </div>
-        </div>
+      <div className="text-left mb-[5rem] overflow-hidden rounded-xl">
+        <Link to={`/blogdiscription/${blog?._id}`}>
+          {blog?.images && blog.images.length > 0 ? (
+            <img
+              src={`https://api.myraj.au/${blog?.images[0].replace('public/', '')}`}  // Display the first image from the array
+              className="rounded-lg h-[17rem] w-[25rem] object-cover hover:scale-105 transition duration-500"
+              alt="Blog Image"
+            />
+          ) : (
+            <img src="/images/blog2.jpg" className="rounded-xl hover:scale-105 transition duration-500 cursor-pointer object-cover" alt="Blog Cover" />
+          )}
+
+          <p className="text-sm text-gray-500 pt-5 ">Living Room</p>
+          <h2 className="font-medium pt-2 ">{blog?.title}</h2>
+        </Link>
+      </div>
     </div>
-  )
+  );
 }
 
-export default IndivualBlogs
+IndivualBlogs.propTypes = {
+  blog: PropTypes.object, // Define the prop type for blog
+};
+
+export default IndivualBlogs;

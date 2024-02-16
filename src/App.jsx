@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,useLocation } from "react-router-dom";
 import './App.css'
 import DiscoverProperties from './components/DiscoverProperties'
 import Footer from './components/Footer'
@@ -18,12 +18,24 @@ import AddProperty from "./pages/AddProperty";
 import Buy from "./pages/Buy"
 import SellElement from "./components/SellElement";
 import Sell from "./pages/Sell";
+import Register from "./pages/Register"
+import { useEffect } from 'react';
 function App() {
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
 
   return (
     <>
     <BrowserRouter>
       <Navbar />
+      <ScrollToTop/>
       
       <Routes>
         <Route path="/" element={<Hero  />} />
@@ -39,6 +51,9 @@ function App() {
           <Route path="/sell" element={<Sell />} />
 
 
+          <Route path="/register" element={<Register />} />
+
+
           <Route path="/buyelement/:id" element={<BuyElement />} />
           <Route path="/InquiryForm" element={<InquiryForm />} />
           {/* <Route path="/ExploreApartments" element={<ExploreApartments />} /> */}
@@ -46,7 +61,7 @@ function App() {
           <Route path="/AddProperty" element={<AddProperty />} />
           <Route path="/for-rent" element={<BuyElement />} />
           <Route path="/sellelement/:id" element={<SellElement />} />
-          <Route path="/blog-description" element={<BlogDiscription />} />
+          <Route path="/blogdiscription/:id" element={<BlogDiscription />} />
 
       </Routes>
       <Footer />
