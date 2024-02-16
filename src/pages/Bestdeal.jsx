@@ -1,12 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // import Bestdealcomp from "../components/Bestdealcomp";
 import ForRent from '../components/ForRent';
 import ForSale from '../components/ForSale';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProperties } from '../Redux/features/PropertySlice';
+import { Link } from 'react-router-dom';
 
 const Bestdeal = () => {
-    const [selectedButton, setSelectedButton] = useState("sale");
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProperties());
+    }, []);
 
+    const [selectedButton, setSelectedButton] = useState("sale");
+    const properties = useSelector((state) => state.property.properties);
+    const rentProperties = properties.filter(property => property.purpose === 'rent');
+    const sellProperties = properties.filter(property => property.purpose === 'sale');
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName === selectedButton ? "" : buttonName); // Toggle selected button
     };
@@ -25,23 +35,33 @@ const Bestdeal = () => {
                     </div>
                 </div>
 
-                <div className="hidden sm:grid grid-cols-4 gap-5">
+                <div className="hidden sm:grid grid-cols-4 grid-rows-1 gap-5">
                     {selectedButton === 'rent' ? (
-                        // Render ForRent component when selectedButton is 'rent'
-                        [1, 1, 1, 1].map((_, index) => <ForRent key={index} />)
-                    ) : (
-                        // Render ForSale component when selectedButton is 'sale'
-                        [1, 1, 1, 1].map((_, index) => <ForSale key={index} />)
+                        rentProperties.map((property, index) => (
+                            <Link key={index} to={`/buyelement/${property?._id}`}>
+                                <ForRent property={property} />
+                            </Link>
+                        ))
+                    ) : (sellProperties.map((property, index) => (
+                        <Link key={index} to={`/buyelement/${property?._id}`}>
+                            <ForSale property={property} />
+                        </Link>
+                    ))
                     )}
                 </div>
 
-                <div className="sm:hidden grid grid-cols-1 gap-5">
-                {selectedButton === 'rent' ? (
-                        // Render ForRent component when selectedButton is 'rent'
-                        [1].map((_, index) => <ForRent key={index} />)
-                    ) : (
-                        // Render ForSale component when selectedButton is 'sale'
-                        [1].map((_, index) => <ForSale key={index} />)
+                <div className="sm:hidden grid grid-cols-1 grid-rows-1 gap-5">
+                    {selectedButton === 'rent' ? (
+                        rentProperties.map((property, index) => (
+                            <Link key={index} to={`/buyelement/${property?._id}`}>
+                                <ForRent property={property} />
+                            </Link>
+                        ))
+                    ) : (sellProperties.map((property, index) => (
+                        <Link key={index} to={`/buyelement/${property?._id}`}>
+                            <ForSale property={property} />
+                        </Link>
+                    ))
                     )}
                 </div>
             </div>

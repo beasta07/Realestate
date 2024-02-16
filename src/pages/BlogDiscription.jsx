@@ -67,7 +67,7 @@ const BlogDiscription = () => {
                             </div>
                         </div> */}
                         <div>
-                            <img src={`https://api.myraj.au/${blog?.images[1].replace('public/', '')}`} className="rounded-lg mt-[3.5rem] object-cover " />
+                            <img src={`https://api.myraj.au/${blog?.images[2].replace('public/', '')}`} className="rounded-lg mt-[3.5rem] object-cover " />
                         </div>
                         <div>
                             <h2 className="font-medium text-[1.3rem] pt-12 pb-5">{blog?.short_description}</h2>

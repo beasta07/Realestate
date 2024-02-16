@@ -10,7 +10,7 @@ const initialState = {
 
 export const getProperties = createAsyncThunk("getProperties/Properties", async (data, thunkApi) => {
     try {
-        const res = await api.post("properties/search");
+        const res = await api.post("properties/search", data);
         console.log(res.data.data, "response of property");
         return res.data.data;
     } catch (error) {
@@ -18,9 +18,7 @@ export const getProperties = createAsyncThunk("getProperties/Properties", async 
     }
 });
 
-export const filterProperties = createAsyncThunk(
-    "filterProperties/Properties",
-    async (data, thunkAPI) => {
+export const filterProperties = createAsyncThunk("filterProperties/Properties", async (data, thunkAPI) => {
         try {
             const res = await api.post("properties/search", data);
             console.log(res.data.data, "response of property");

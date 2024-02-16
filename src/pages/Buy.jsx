@@ -4,19 +4,23 @@ import { Link } from 'react-router-dom';
 import { getProperties } from '../Redux/features/PropertySlice';
 import BuyComp from '../components/BuyComp';
 import Filter2 from '../components/Filter2';
+import { getCategories } from "../Redux/features/CategorySlice";
 
 const Buy = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getProperties());
+        dispatch(getCategories());
+        
     }, []);
 
+    const categories = useSelector((state) => state.category.categories);
     const properties = useSelector((state) => state.property.properties);
     const rentProperties = properties.filter(property => property.purpose === 'rent');
     const filterLocation = useSelector((state) => state.property.filterLocation); // Change this to get filterLocation from Redux store
 
     const filteredProperties = filterLocation ? rentProperties.filter(property => property.location.district === filterLocation) : rentProperties;
-    
+
     return (
         <>
             <div className='bg-[#F7F7F7] px-3 sm:px-0'>
@@ -31,6 +35,11 @@ const Buy = () => {
                             {filteredProperties.map((property, index) => (
                                 <Link key={index} to={`/buyelement/${property?._id}`}>
                                     <BuyComp property={property} />
+                                </Link>
+                            ))}
+                            {categories.map((category, index) => (
+                                <Link key={index} to={`/buyelement/${category?._id}`}>
+                                    <BuyComp category={category} />
                                 </Link>
                             ))}
                         </div>

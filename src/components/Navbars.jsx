@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
 import { FaRegUserCircle } from "react-icons/fa";
-import { MdOutlineArrowOutward } from "react-icons/md";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser, postLogin } from '../Redux/features/authSlice';
+import PropTypes from "prop-types";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Navbars = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.register.user);
+    console.log(user, "response");
+
     const [scrolling, setScrolling] = useState(false);
     const location = useLocation();
+
+    useEffect(() => {
+        dispatch(postLogin());
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,13 +41,25 @@ const Navbars = () => {
     }, []);
 
     const [menuOpen, setMenuOpen] = useState(false);
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isloggedin, setIsloggedin] = useState(false);
 
     const handleLogin = () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
+        try {
+            const loginData = { username, password };
+            dispatch(postLogin({ loginData, navigate, setMenuOpen, setIsloggedin }));
+            setPassword('');
+        } catch (error) {
+            console.log(error);
+        }
     };
+
+    const handleLogout = () => {
+        setMenuOpen(false);
+        setIsloggedin(false);
+        dispatch(logoutUser());
+    }
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -75,63 +101,92 @@ const Navbars = () => {
                                 </ul>
                             </div>
                             <div className="flex">
-                                <button className="pr-2"><FaRegUserCircle /></button>
-                                <button onClick={toggleMenu}>Login/Register</button>
-                                {menuOpen && (
-                                    <div className="fixed  inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                        <div className="bg-white fixed p-8 w-[400px] rounded-lg z-[999]">
-                                            <div className="flex justify-end">
-                                                <button className="text-gray-500" onClick={closeMenu}>
-                                                    <span className="text-2xl">&times;</span>
-                                                </button>
-                                            </div>
-                                            <h2 className="text-2xl font-semibold mb-4">Login/Register</h2>
-                                            <form>
-                                                <div className="mb-4">
-                                                    <label htmlFor="email" className="block text-gray-600 text-sm font-medium">
-                                                        Email:
-                                                    </label>
-                                                    <input
-                                                        type="email"
-                                                        id="email"
-                                                        className="w-full border border-gray-300 p-2 rounded-md"
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                        value={email}
-                                                    />
-                                                </div>
-                                                <div className="mb-4">
-                                                    <label htmlFor="password" className="block text-gray-600 text-sm font-medium">
-                                                        Password:
-                                                    </label>
-                                                    <input
-                                                        type="password"
-                                                        id="password"
-                                                        className="w-full border border-gray-300 p-2 rounded-md"
-                                                        onChange={(e) => setPassword(e.target.value)}
-                                                        value={password}
-                                                    />
-                                                </div>
-                                                <div className='flex gap-4'>
-                                                <button
-                                                    type="button"
-                                                    className="bg-orange-900 text-white px-4 py-2 rounded-md"
-                                                    onClick={handleLogin}
-                                                >
-                                                    Sign Up
-                                                </button>
-                                                <Link to='/register'>
-                                                <p className='mt-2 text-gray-600 flex' onClick={closeMenu}>Register here <BsArrowLeftCircleFill className='mt-1 ml-2'/></p>
-                                                </Link>
-                                                </div>
-                                            </form>
+                                {isloggedin ? (
+                                    <>
+                                        <div className="relative">
+
+                                            {menuOpen && (
+                                                <ul className="absolute  mt-12 right-5 py-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <li><button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><IoLogOutOutline className='mt-0 mr-3 text-[1.1rem]'/>Logout</button></li>
+                                                    <li><button onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><MdOutlineAddShoppingCart className='mt-0 mr-3 text-[1.1rem]'/>Booked Properties</button></li>
+                                                </ul>
+                                            )}
+
+                                            <button onClick={toggleMenu} className="pr-2 focus:outline-none"><FaRegUserCircle className='mr-3 mt-5' /></button>
+                                            <button onClick={toggleMenu} className='absolute mt-4 -ml-[7rem]'>{username}</button>
                                         </div>
-                                    </div>
+
+                                    </>
+                                ) : (
+                                    <>
+                                        <button className="pr-2"><FaRegUserCircle /></button>
+                                        <button onClick={toggleMenu}>Login/Register</button>
+                                        {menuOpen && (
+                                            <div className="fixed  inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                                <div className="bg-white fixed p-8 w-[400px] rounded-lg z-[999]">
+                                                    <div className="flex justify-end">
+                                                        <button className="text-gray-500" onClick={closeMenu}>
+                                                            <span className="text-2xl">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <h2 className="text-2xl font-semibold mb-4">Login/Register</h2>
+                                                    <form>
+                                                        <div className="mb-4">
+                                                            <label htmlFor="email" className="block text-gray-600 text-sm font-medium">
+                                                                Email:
+                                                            </label>
+                                                            <input
+                                                                type="email"
+                                                                id="email"
+                                                                className="w-full border border-gray-300 p-2 rounded-md"
+                                                                onChange={(e) => setUsername(e.target.value)}
+                                                                value={username}
+                                                            />
+                                                        </div>
+                                                        <div className="mb-4">
+                                                            <label htmlFor="password" className="block text-gray-600 text-sm font-medium">
+                                                                Password:
+                                                            </label>
+                                                            <input
+                                                                type="password"
+                                                                id="password"
+                                                                className="w-full border border-gray-300 p-2 rounded-md"
+                                                                onChange={(e) => setPassword(e.target.value)}
+                                                                value={password}
+                                                            />
+                                                        </div>
+                                                        <div className='flex gap-4'>
+                                                            <button
+                                                                type="button"
+                                                                className="bg-orange-900 text-white px-4 py-2 rounded-md"
+                                                                onClick={handleLogin}
+                                                            >
+                                                                Sign Up
+                                                            </button>
+                                                            <Link to='/register'>
+                                                                <p className='mt-2 text-gray-600 flex' onClick={closeMenu}>Register here <BsArrowLeftCircleFill className='mt-1 ml-2' /></p>
+                                                            </Link>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
                                 )}
-                                <Link to='/addproperty'>
+
+                                {/* <button onClick={toggleMenu}>Login/Register</button> */}
+
+
+                                {/* <Link to='/addproperty'>
                                     <button className="flex py-3 px-5 ring-1 ring-gray-600 border-gray-400 rounded-xl text-black ml-8 hover:ring-0 hover:bg-orange-900 hover:text-white transition duration-300">
                                         Add Property<MdOutlineArrowOutward className="ml-2 mt-1" />
                                     </button>
-                                </Link>
+                                </Link> */}
+                                {/* <Link to='/cart'>
+                                    <button className="flex py-3 px-5 ring-1 ring-gray-600 border-gray-400 rounded-xl text-black ml-8 hover:ring-0 hover:bg-orange-900 hover:text-white transition duration-300">
+                                        Booked<MdOutlineAddShoppingCart className="ml-2 mt-1" />
+                                    </button>
+                                </Link> */}
                             </div>
                         </div>
                     </div>
@@ -154,6 +209,7 @@ const Navbars = () => {
                                         <NavLink to='/sell' onClick={closeMenu}>Sell</NavLink>
                                         <NavLink to='/mainblog' onClick={closeMenu}>Blog</NavLink>
                                         <NavLink to='/contact' onClick={closeMenu}>Contact</NavLink>
+                                        {isloggedin && <li onClick={() => { handleLogout(); closeMenu(); }}>Logout</li>}
                                     </ul>
                                     <hr className='bg-gray-300 dark:bg-black h-px border-0' />
                                     <div className='p-8 leading-[3.3rem]'>
@@ -173,80 +229,19 @@ const Navbars = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
+
+
 }
 
+Navbars.propTypes = {
+    to: PropTypes.object,
+};
+Navbars.propTypes = {
+    children: PropTypes.object,
+};
+
+
 export default Navbars;
-
-
-// import { useEffect, useState } from 'react';
-// import { FaRegUserCircle } from "react-icons/fa";
-// import { MdOutlineArrowOutward } from "react-icons/md";
-// import { CgMenuRightAlt } from "react-icons/cg";
-// import { Link } from "react-router-dom";
-
-// const Navbars = () => {
-//   const [scrolling, setScrolling] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (window.scrollY > 80) {
-//         setScrolling(true);
-//       } else {
-//         setScrolling(false);
-//       }
-//     };
-
-//     window.addEventListener('scroll', handleScroll);
-
-//     return () => {
-//       window.removeEventListener('scroll', handleScroll);
-//     };
-//   }, []);
-
-//   return (
-//     <div className={`sm:sticky top-0 z-20 ${scrolling ? 'shadow-lg' : 'shadow-none'}`}>
-//       <div>
-//         <div className={`absolute w-[100%] ${scrolling ? 'bg-white shadow-md' : 'bg-transparent text-white'}`}>
-//             <div className={`hidden z-40 container w-[100%] mx-auto sm:flex justify-between py-5  font-medium ${scrolling ? 'text-black' : 'text-white'}`}>
-//           <div className="pt-4">
-//             <h2>MyRAJ</h2>
-//           </div>
-//           <div className="pt-4">
-//             <ul className="flex gap-12">
-//               <Link to='/'><li>Home</li></Link>
-//               <Link to='/about'><li>About</li></Link>
-//               <Link to='/buy'><li>Buy</li></Link>
-//               <Link to='/sell'><li>Sell</li></Link>
-//               <Link to='/blog'><li>Blog</li></Link>
-//               <Link to='/contact'><li>Contact</li></Link>
-//             </ul>
-//           </div>
-//           <div className="flex">
-//             <button className="pr-2"><FaRegUserCircle /></button>
-//             <button>Login/Register</button>
-//             <button className={`flex py-3 px-5 bg-white rounded-xl text-black ml-8 hover:bg-orange-900 hover:text-white transition duration-300 ${scrolling ? 'border-2 border-black' : '' }`}>Add Property<MdOutlineArrowOutward className="ml-2 mt-1"/></button>
-//           </div>
-//         </div>
-//         </div>
-//       </div>
-//       <hr className="h-px border-0 sm:w-[100%] mx-auto  dark:bg-gray-800" />
-
-//       <div className="sm:hidden relative z-40 flex justify-between px-5 bg-white text-black py-5 ">
-//         <div>
-//           <button className="text-[1.4rem]"><CgMenuRightAlt /></button>
-//         </div>
-//         <div>
-//           <h2>MyRAJ</h2>
-//         </div>
-//         <div>
-//           <button className="text-[1.4rem] "><FaRegUserCircle /></button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Navbars;

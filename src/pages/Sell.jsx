@@ -29,7 +29,7 @@ const Sell = () => {
                         </div>
                         <div className="container grid sm:grid-cols-2 gap-[1.7rem] mx-auto">
                             {filteredProperties.map((property, index) => (
-                                <Link key={index} to={`/sellelement/${property?._id}`}>
+                                <Link key={index} to={`/buyelement/${property?._id}`}>
                                  <SellComp  property={property} />
                                  </Link>
                             ))}

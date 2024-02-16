@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from "react-redux"
 import { getCategories } from "../Redux/features/CategorySlice"
-import { getProperties} from "../Redux/features/PropertySlice"
+import { getProperties } from "../Redux/features/PropertySlice"
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -14,20 +14,17 @@ const Filter = () => {
   const properties = useSelector((state) => state.property.properties);
   const categories = useSelector((state) => state.category.categories);
 
-  const [selectedButton, setSelectedButton] = useState('Buy');
-  const [searchPlaceholder, setSearchPlaceholder] = useState('Enter Keyword for Buy');
+  const [selectedButton, setSelectedButton] = useState('Sell');
+  const [searchPlaceholder, setSearchPlaceholder] = useState('Enter Keyword for Sell');
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     switch (buttonName) {
-      case 'Buy':
-        setSearchPlaceholder('Enter Keyword for Buy');
+      case 'Sell':
+        setSearchPlaceholder('Enter Keyword for Sell');
         break;
       case 'Rent':
         setSearchPlaceholder('Enter Keyword for Rent');
-        break;
-      case 'Sold':
-        setSearchPlaceholder('Enter Keyword for Sold');
         break;
       default:
         setSearchPlaceholder('Enter Keyword');
@@ -37,13 +34,13 @@ const Filter = () => {
   return (
     <div>
       <div className="absolute sm:relative container w-[100%] mx-auto sm:mt-[12rem] mt-[3rem] px-4 sm:px-0">
-        <div className="flex text-black bg-white gap-9 px-6 py-5 rounded-t-xl w-[62%] sm:w-[19%]">
+        <div className="flex text-black bg-white gap-9 px-8 py-5 rounded-t-xl w-[62%] sm:w-[14%]">
           <button
-            onClick={() => handleButtonClick('Buy')}
-            className={`font-medium ${selectedButton === 'Buy' ? 'border-b-2 border-black py-2' : 'border-none'
+            onClick={() => handleButtonClick('Sell')}
+            className={`font-medium ${selectedButton === 'Sell' ? 'border-b-2 border-black py-2' : 'border-none'
               }`}
           >
-            Buy
+            Sell
           </button>
           <button
             onClick={() => handleButtonClick('Rent')}
@@ -52,13 +49,7 @@ const Filter = () => {
           >
             Rent
           </button>
-          <button
-            onClick={() => handleButtonClick('Sold')}
-            className={`font-medium ${selectedButton === 'Sold' ? 'border-b-2 border-black py-2 transition' : 'border-none'
-              }`}
-          >
-            Sold
-          </button>
+
         </div>
         <hr className="w-[62%] sm:w-[19%]" />
 
@@ -94,7 +85,7 @@ const Filter = () => {
           </div>
 
           <div className="flex gap-[5rem] pt-4 sm:pt-0">
-            <button className="py-4 sm:py-0 my-0 sm:my-4 px-4 ml-5 sm:ml-16 bg-orange-900 rounded-lg text-white text-[1.5rem] mt-3"><IoSearchOutline /></button>
+            <button className="py-4 sm:py-0 my-0 sm:my-4 px-4 ml-5 sm:ml-20 bg-orange-900 rounded-lg text-white text-[1.5rem] mt-3"><IoSearchOutline /></button>
           </div>
         </div>
       </div>
