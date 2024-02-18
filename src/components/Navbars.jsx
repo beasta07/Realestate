@@ -107,8 +107,8 @@ const Navbars = () => {
 
                                             {menuOpen && (
                                                 <ul className="absolute  mt-12 right-5 py-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                    <li><button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><IoLogOutOutline className='mt-0 mr-3 text-[1.1rem]'/>Logout</button></li>
-                                                    <li><button onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><MdOutlineAddShoppingCart className='mt-0 mr-3 text-[1.1rem]'/>Booked Properties</button></li>
+                                                    <li><button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><IoLogOutOutline className='mt-0 mr-3 text-[1.1rem]' />Logout</button></li>
+                                                    <li><button onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full sm:flex"><MdOutlineAddShoppingCart className='mt-0 mr-3 text-[1.1rem]' />Booked Properties</button></li>
                                                 </ul>
                                             )}
 

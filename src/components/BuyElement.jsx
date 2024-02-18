@@ -12,11 +12,47 @@ import { FaShower } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { MdOutlineGarage } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
-import { FiPhoneCall } from "react-icons/fi";
+// import { FiPhoneCall } from "react-icons/fi";
 import { getProperties } from '../Redux/features/PropertySlice';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { postInquery } from '../Redux/features/inquerySlice';
+import { toast } from 'react-toastify';
 // import DiscoverProperties from '../components/DiscoverProperties';
 
 const BuyElement = () => {
+  // const [formData, setFormData] = useState({
+  //   description: '',
+  //   email: '',
+  //   name: '',
+  //   phone: '',
+  //   subject: '',
+  // });
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData(prevState => ({
+  //     ...prevState,
+  //     [name]: value
+  //   }));
+  // };
+
+  const validationSchema = Yup.object().shape({
+    description: Yup.string().required('Message is required'),
+    email: Yup.string().required('Email is required').email('Invalid email'),
+    name: Yup.string().required('First Name is required'),
+    phone: Yup.string().required('Last Name is required'),
+    subject: Yup.string().required('Subject is required')
+  });
+
+  const initialValues = {
+    description: '',
+    email: '',
+    name: '',
+    phone: '',
+    subject: ''
+  };
+
   const dispatch = useDispatch();
   const { id } = useParams();
   // const [property, setProperty] = useState(null);
@@ -32,6 +68,22 @@ const BuyElement = () => {
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+
+  // Change from postInquery to postInquiry
+  const handleSubmit = async (values) => {
+    try {
+      dispatch(postInquery(values)); // Corrected action name
+      toast.success("Registration successful!"); // Display success message
+    } catch (error) {
+      console.log(error); // Output error to console
+      if (error.message) {
+        toast.error(error.message); // Display error message using toast.error
+      } else {
+        toast.error("An error occurred during registration."); // Display generic error message
+      }
+    }
+  };
+
 
   if (!property) {
     return <div>Loading...</div>;
@@ -66,9 +118,9 @@ const BuyElement = () => {
           </div>
         </div>
         <div className="sm:grid grid-rows-2 grid-flow-col gap-4 mt-[3rem] mb-[4rem] sm:mb-0">
-          <div className="row-span-3 ..."><img src={`https://api.myraj.au/${property?.images[0]}`} className="rounded-l-xl hover:scale-105 transition-transform duration-300 sm:h-[34.3rem] sm:w-[50rem] object-cover" /></div>
-          <div className="col-span-2 ..."><img src={`https://api.myraj.au/${property?.images[1]}`} className="hidden sm:block rounded-r-xl hover:scale-105 transition-transform duration-300 sm:h-[16.6rem] sm:w-[25rem] object-cover" /></div>
-          <div className=" col-span-2 ..."><img src={`https://api.myraj.au/${property?.images[2]}`} className="hidden sm:block rounded-r-xl hover:scale-105 transition-transform duration-300 sm:h-[16.6rem] sm:w-[25rem] object-cover" /></div>
+          <div className="row-span-3"><img src={`https://api.myraj.au/${property?.images[0]}`} className="rounded-l-xl hover:scale-105 transition-transform duration-300 sm:h-[34.3rem] sm:w-[50rem] object-cover" /></div>
+          <div className="col-span-2"><img src={`https://api.myraj.au/${property?.images[1]}`} className="hidden sm:block rounded-r-xl hover:scale-105 transition-transform duration-300 sm:h-[16.6rem] sm:w-[25rem] object-cover" /></div>
+          <div className=" col-span-2"><img src={`https://api.myraj.au/${property?.images[2]}`} className="hidden sm:block rounded-r-xl hover:scale-105 transition-transform duration-300 sm:h-[16.6rem] sm:w-[25rem] object-cover" /></div>
         </div>
         <div className="sm:flex justify-between sm:px-[2rem] px-1 sm:mt-[2rem]">
           <div className="flex">
@@ -169,31 +221,63 @@ const BuyElement = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[30%] rounded-xl shadow-md bg-white mt-[2rem] ml-[2rem] sm:block hidden">
-              <div className="flex mt-5 pl-7">
-                <img src="images/reviewImage.jpg" className='w-[5rem]' />
-                <div className="ml-4">
-                  <h1 className="font-semibold text-[0.85rem] mb-2">Leslie Alexander</h1>
-                  <p className="text-[0.85rem]">Nintendo</p>
-                  <div className='flex'>
-                    <FiPhoneCall className='mt-2 mr-2' />
-                    <p className='mt-1'>+61 4100 111 66</p>
-                  </div>
-                </div>
-              </div>
 
-              <div className='px-5 h-[25rem]'>
-                <input type='text' placeholder="Enter you Name" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
+            <div className='py-5 px-3 shadow rounded-lg mt-[2rem] ml-8 bg-white'>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ values, handleChange, handleSubmit, errors, touched }) => (
+                  <Form>
+                    <h1 className='text-center text-bold text-[1.25rem] mt-4'>Inquiry Form</h1>
+                    <div className='px-5 py-7'>
+                      <Field
+                        type='text'
+                        placeholder="Enter your Name"
+                        name='name'
+                        className="block border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-4 px-4 pr-8 leading-tight focus:outline-none focus:bg-white hover:border-blue-600 pb-2"
+                      />
+                      <ErrorMessage name="name" component="div" className="text-red-500" />
+                      <Field
+                        type='email'
+                        placeholder="Abc@gmail.com"
+                        name='email'
+                        className="block border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-4 px-4 pr-8 leading-tight focus:outline-none focus:bg-white hover:border-blue-600 pb-2"
+                      />
+                      <ErrorMessage name="email" component="div" className="text-red-500" />
+                      <Field
+                        type='phone'
+                        placeholder="Enter your Phone"
+                        name='phone'
+                        className="block border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-4 px-4 pr-8 leading-tight focus:outline-none focus:bg-white hover:border-blue-600 pb-2"
+                      />
+                      <ErrorMessage name="phone" component="div" className="text-red-500" />
+                      <Field
+                        type='text'
+                        placeholder="Enter your Subject"
+                        name='subject'
+                        className="block border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-4 px-4 pr-8 leading-tight focus:outline-none focus:bg-white hover:border-blue-600 pb-2"
+                      />
+                      <ErrorMessage name="subject" component="div" className="text-red-500" />
+                      <Field
+                        placeholder="Any Questions"
+                        name='description'
+                        className="block border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-4 px-4 pr-8 leading-tight focus:outline-none focus:bg-white hover:border-blue-600 pb-2"
+                      />
+                      <ErrorMessage name="description" component="div" className="text-red-500" />
+                      <button
+                        type='submit' // Corrected lowercase 'submit'
+                        className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block mb-[5.6rem] mt-4 mx-auto px-0"
+                      >
+                        Send Inquiry
+                      </button>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
 
-                <input type='email' placeholder="Abc@gmail.com" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
-                <input type='number' min="0 " placeholder="Enter your Number" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
 
-
-                <textarea type='text' placeholder="Any Questions" className="block   border w-[18rem] mt-6 mb-5 border-gray-300 rounded-md text-black py-3 px-4 pr-8  leading-tight focus:outline-none focus:bg-white  hover:border-blue-600 pb-2" id="grid-state" />
-                <input type="checkbox" className='mr-2' />
-                <label className='text-[0.85rem]'> i agree to Terms and conditions on this.</label>
-                <button className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block mb-[5.6rem] mt-4 mx-auto px-0">Register Now</button>
-              </div>
             </div>
           </div>
 
@@ -216,8 +300,8 @@ const BuyElement = () => {
                     <p className='text- l'>{property?.location.municipality}</p>
                   </div>
 
-                  <div className='ml-[35rem] -mt-14'>
-                    <button className='py-3 px-5 bg-blue-800 rounded-lg text-white'>Book this property</button>
+                  <div className='sm:ml-[35rem] sm:-mt-14'>
+                    <button className='py-3 px-5 bg-blue-800 rounded-lg text-white cursor-not-allowed hover:bg-blue-200 hover:text-gray-200'>Book this property</button>
                   </div>
                 </div>
 
