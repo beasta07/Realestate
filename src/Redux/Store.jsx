@@ -4,6 +4,7 @@ import propertySlice from "./features/PropertySlice";
 import BlogSlice from "./features/BlogSlice";
 import authSlice from "./features/authSlice";
 import inquerySlice from "./features/inquerySlice";
+// import BookedPropertySlice from "./features/BookedPropertySlice";
 
 const store = configureStore({
     reducer: {

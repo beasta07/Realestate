@@ -23,6 +23,7 @@ import SellElement from './components/SellElement';
 import DiscoverComp from './components/DiscoverComp';
 import Register from './pages/Register';
 import { useEffect } from 'react';
+import BookedProperty from './pages/BookedProperty';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -58,6 +59,7 @@ function App() {
           <Route path='/buyelement/:id' element={<BuyElement />} />
           <Route path='/sellelement/:id' element={<SellElement />} />
           <Route path='/buy' element={<Buy />} />
+          <Route path='/bookedproperty' element={<BookedProperty />} />
           <Route path='/sell' element={<Sell />} />
           <Route path='/register' element={<Register />} />
         </Routes>

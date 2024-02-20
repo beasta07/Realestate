@@ -1,47 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { CiClock1 } from "react-icons/ci";
-// import { CiShare1 } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
-// import { BsCopy } from "react-icons/bs";
 import { CiShare2 } from "react-icons/ci";
-// import { IoPrintOutline } from "react-icons/io5";
 import { FaBed } from "react-icons/fa";
 import { FaShower } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { MdOutlineGarage } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
-// import { FiPhoneCall } from "react-icons/fi";
-import { getProperties } from '../Redux/features/PropertySlice';
+import { postBookedProperties, getProperties } from '../Redux/features/PropertySlice';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { postInquery } from '../Redux/features/inquerySlice';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 // import DiscoverProperties from '../components/DiscoverProperties';
 
 const BuyElement = () => {
-  // const [formData, setFormData] = useState({
-  //   description: '',
-  //   email: '',
-  //   name: '',
-  //   phone: '',
-  //   subject: '',
-  // });
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prevState => ({
-  //     ...prevState,
-  //     [name]: value
-  //   }));
-  // };
+  useEffect(() => {
+    const isloggedin = localStorage.getItem('isloggedin');
+    if (isloggedin) {
+      setIsUserLoggedIn(true);
+    }
+  }, []);
 
   const validationSchema = Yup.object().shape({
     description: Yup.string().required('Message is required'),
     email: Yup.string().required('Email is required').email('Invalid email'),
     name: Yup.string().required('First Name is required'),
-    phone: Yup.string().required('Last Name is required'),
+    phone: Yup.string().required('Phone number is required'),
     subject: Yup.string().required('Subject is required')
   });
 
@@ -62,6 +50,16 @@ const BuyElement = () => {
 
   const properties = useSelector((state) => state.property.properties);
   const property = properties.find(property => property._id === id);
+  // const users = useSelector((state) => state.register.user);
+  const userID = localStorage.getItem('userId');
+  
+  // Function to handle booking a property
+  const handleBookProperty = () => {
+    dispatch(postBookedProperties({ propertyId: property._id, userId: userID })); // Dispatch the bookProperty action with the property id and userId
+    toast.success("Property booked successfully!");
+  };
+
+
 
   const [showMore, setShowMore] = useState(false);
 
@@ -73,7 +71,8 @@ const BuyElement = () => {
   const handleSubmit = async (values) => {
     try {
       dispatch(postInquery(values)); // Corrected action name
-      toast.success("Registration successful!"); // Display success message
+      toast.message("Inquery Send!"); // Display success message
+      initialValues('');
     } catch (error) {
       console.log(error); // Output error to console
       if (error.message) {
@@ -167,7 +166,7 @@ const BuyElement = () => {
       <div className="bg-[#F7F7F7] mt-[0rem]">
         <div className='container w-[100%] mx-auto pb-16'>
           <div className="sm:flex p-5">
-            <div className="sm:w-[70%] sm:px-3 rounded-xl shadow-md bg-white mt-[2rem] py-6">
+            <div className="sm:w-[70%] sm:px-3 rounded-xl shadow-md bg-white mt-[2rem] py-3">
               <h1 className='font-semibold p-5 text-[1.3rem]'>Property Description</h1>
               <p className='mx-5 text-[0.85rem] text-justify leading-[1.5rem]'>
                 {property?.description}
@@ -182,7 +181,7 @@ const BuyElement = () => {
               </button>
 
               <div className='p-5 pb-3'>
-                <h1 className='font-semibold text-[1.25rem] my-[2rem]'>Property Details</h1>
+                <h1 className='font-semibold text-[1.25rem] my-[1rem]'>Property Details</h1>
                 <div className='sm:flex gap-[4rem]'>
                   <div>
                     <div className='flex gap-5  justify-between pb-3'>
@@ -231,7 +230,7 @@ const BuyElement = () => {
                 {({ values, handleChange, handleSubmit, errors, touched }) => (
                   <Form>
                     <h1 className='text-center text-bold text-[1.25rem] mt-4'>Inquiry Form</h1>
-                    <div className='px-5 py-7'>
+                    <div className='px-5 py-0'>
                       <Field
                         type='text'
                         placeholder="Enter your Name"
@@ -268,7 +267,7 @@ const BuyElement = () => {
                       <ErrorMessage name="description" component="div" className="text-red-500" />
                       <button
                         type='submit' // Corrected lowercase 'submit'
-                        className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block mb-[5.6rem] mt-4 mx-auto px-0"
+                        className="text-[white] rounded-md bg-[#EB6753] w-[12rem] p-3 font-semibold hidden sm:block my-5 mx-auto px-0"
                       >
                         Send Inquiry
                       </button>
@@ -301,7 +300,14 @@ const BuyElement = () => {
                   </div>
 
                   <div className='sm:ml-[35rem] sm:-mt-14'>
-                    <button className='py-3 px-5 bg-blue-800 rounded-lg text-white cursor-not-allowed hover:bg-blue-200 hover:text-gray-200'>Book this property</button>
+                    <button
+                      className={`py-3 px-5 bg-blue-800 rounded-lg text-white ${!isUserLoggedIn ? 'cursor-not-allowed' : 'hover:bg-white hover:ring-1 hover:ring-blue-900 hover:text-blue-900'
+                        } transition duration-300`}
+                      disabled={!isUserLoggedIn} // Disable the button if the user is not logged in
+                      onClick={handleBookProperty}
+                    >
+                      Book this property
+                    </button>
                   </div>
                 </div>
 
@@ -311,7 +317,7 @@ const BuyElement = () => {
           </div>
 
         </div>
-
+        <ToastContainer />
       </div>
     </>
   );

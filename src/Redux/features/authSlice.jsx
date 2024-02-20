@@ -21,15 +21,18 @@ export const postRegister = createAsyncThunk("auth/register", async (registerDat
     }
 });
 
-export const postLogin = createAsyncThunk("postLogin/login", async ({ loginData, navigate, setMenuOpen, setIsloggedin }, thunkApi) => {
+export const postLogin = createAsyncThunk("postLogin/login", async ({ loginData, navigate, setMenuOpen, setIsloggedin, setUsername }, thunkApi) => {
     try {
         const res = await api.post("auth/login", loginData);
         console.log(res.data, "response of login");
         localStorage.setItem('token', res.data.accessToken);
+        localStorage.setItem('username', res.data.user.username);
+        localStorage.setItem('userId', res.data.user._id);
         setMenuOpen(false);
         setIsloggedin(true);
+        setUsername(res.data.user.username);
         navigate('/');
-        return res.data.accessToken;
+        return res.data;
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data.message);
     }

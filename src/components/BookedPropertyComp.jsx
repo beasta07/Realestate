@@ -1,27 +1,22 @@
-import { CiHeart } from "react-icons/ci";
+// import React from 'react'
 import PropTypes from "prop-types";
+import { CiHeart } from "react-icons/ci";
 
-const BuyComp = ({ property, category }) => {
-  if (!property) {
-    return null; // Return null or a loading indicator if blog is undefined
-
-  }
-
-
+const BookedPropertyComp = ({property}) => {
   return (
     <>
-      <div className="rounded-lg bg-white shadow hover:scale-105 transition duration-500 sm:w-[23.5rem]">
+      <div className="rounded-lg bg-white shadow hover:scale-105 transition duration-500 sm:w-[23.5rem] mt-8">
 
         {property.images.length > 0 ? (
           <img
             src={`https://api.myraj.au/${property.images[0]}`} // Display the first image from the array
-            className="rounded-lg h-[13rem] w-[100%] object-cover"
+            className="rounded-lg h-[13rem] w-[24rem] object-cover"
             alt="Property Image"
           />
         ) : (
           <img
             src="/images/buy1.jpg"
-            className="rounded-lg h-[13rem] w-[100%] object-cover"
+            className="rounded-lg h-[13rem] w-[24rem] object-cover"
             alt="Property Image"
           /> // Display a placeholder if no images
         )}
@@ -41,11 +36,10 @@ const BuyComp = ({ property, category }) => {
   )
 }
 
-BuyComp.propTypes = {
-  property: PropTypes.object, // Define the prop type for blog
-};
-BuyComp.propTypes = {
-  category: PropTypes.object, // Define the prop type for blog
-};
+BookedPropertyComp.propTypes = {
+    property: PropTypes.object, 
+  };
 
-export default BuyComp
+export default BookedPropertyComp;
+
+

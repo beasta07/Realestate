@@ -1,29 +1,111 @@
-// import React from 'react'
-import { MdOutlineArrowOutward } from "react-icons/md";
-import { MdOutlineLocalPhone } from "react-icons/md";
+// import React from 'react';
+import { MdOutlineArrowOutward, MdOutlineLocalPhone } from "react-icons/md";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import Visit from "../components/Visit";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { postInquery } from "../Redux/features/inquerySlice";
 
 const Contact = () => {
+    const dispatch = useDispatch();
+    const initialValues = {
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        description: ''
+    };
+
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().required('Name is required'),
+        email: Yup.string().email('Invalid email').required('Email is required'),
+        phone: Yup.string().required('Phone number is required'),
+        subject: Yup.string().required('Subject is required'),
+        description: Yup.string().required('Description is required')
+    });
+
+    const handleSubmit = async (values) => {
+        try {
+          dispatch(postInquery(values)); // Corrected action name
+          toast.success("Registration successful!"); // Display success message
+        } catch (error) {
+          console.log(error); // Output error to console
+          if (error.message) {
+            toast.error(error.message); // Display error message using toast.error
+          } else {
+            toast.error("An error occurred during registration."); // Display generic error message
+          }
+        }
+      };
+
     return (
         <div>
             <div className="mb-[0rem]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776850155!2d85.28493301147012!3d27.70903024180952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1706503916499!5m2!1sen!2snp" width="100%" height="600" style={{ border: 0 }}  />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27776850155!2d85.28493301147012!3d27.70903024180952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1706503916499!5m2!1sen!2snp" width="100%" height="600" style={{ border: 0 }} />
                 <div className="container w-[100%] mx-auto">
-                    <div className="sm:flex gap-[15rem] mt-14 sm:-mt-[23rem]">
+                    <div className="sm:flex gap-[15rem] mt-14 sm:-mt-[28rem]">
                         <div className="w-[90%] mx-auto sm:mx-0 sm:w-[80%] bg-white p-8 rounded-lg border-2 border-gray-300">
                             <h2 className="text-[1.3rem] font-medium pb-6">Have questions? Get in touch!</h2>
-                            <h3 className="font-medium pb-2">First Name</h3>
-                            <input className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Name" />
-                            <h3 className="font-medium pb-2">Laste Name</h3>
-                            <input className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Name" />
-                            <h3 className="font-medium pb-2">Email</h3>
-                            <input className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Email" />
-                            <h3 className="font-medium pb-2">First Name</h3>
-                            <textarea className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300" type="text" placeholder="Your Mesage here" />
-                            <button className="flex py-3 bg-orange-900 rounded-lg px-14 text-white">Submit <MdOutlineArrowOutward className="mt-1 ml-2" /></button>
+                            <Formik
+                                initialValues={initialValues}
+                                validationSchema={validationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ values, handleChange, handleSubmit }) => (
+                                    <Form>
+                                        <h3 className="font-medium pb-2">Name</h3>
+                                        <Field
+                                            type='text'
+                                            name='name'
+                                            className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300"
+                                        />
+                                        <ErrorMessage name="name" component="div" className="text-red-500" />
+
+                                        <h3 className="font-medium pb-2">Email</h3>
+                                        <Field
+                                            type='text'
+                                            name='email'
+                                            className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300"
+                                        />
+                                        <ErrorMessage name="email" component="div" className="text-red-500" />
+
+                                        <h3 className="font-medium pb-2">Phone</h3>
+                                        <Field
+                                            type='text'
+                                            name='phone'
+                                            className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300"
+                                        />
+                                        <ErrorMessage name="phone" component="div" className="text-red-500" />
+
+                                        <h3 className="font-medium pb-2">Subject</h3>
+                                        <Field
+                                            type='text'
+                                            name='subject'
+                                            className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300"
+                                        />
+                                        <ErrorMessage name="subject" component="div" className="text-red-500" />
+
+                                        <h3 className="font-medium pb-2">Description</h3>
+                                        <Field
+                                            as="textarea"
+                                            name='description'
+                                            className="py-3 w-[100%] px-3 mb-5 border-2 rounded-lg border-gray-300"
+                                        />
+                                        <ErrorMessage name="description" component="div" className="text-red-500" />
+
+                                        <button
+                                            type='submit'
+                                            className="flex py-3 bg-orange-900 rounded-lg px-14 text-white"
+                                        >
+                                            Submit <MdOutlineArrowOutward className="mt-1 ml-2" />
+                                        </button>
+                                    </Form>
+                                )}
+                            </Formik>
                         </div>
                         <div className="sm:px-0 px-5">
-                            <h2 className="font-medium text-[1.3rem] mt-8 sm:text-[2rem] sm:w-[60%] sm:mt-[28rem]">We would Love To Hear From You.</h2>
+                            <h2 className="font-medium text-[1.3rem] mt-8 sm:text-[2rem] sm:w-[60%] sm:mt-[34rem]">We would Love To Hear From You.</h2>
                             <p className="text-justify sm:text-left pt-3 sm:pt-0 w-[100%] text-sm">We are here to answer any question you may have. As a partner of corporates, realton has more than 9,000 offices of all sizes and all potential of session.</p>
                         </div>
                     </div>
@@ -44,7 +126,7 @@ const Contact = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

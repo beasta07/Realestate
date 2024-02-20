@@ -3,13 +3,17 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from "react-redux"
 import { getCategories } from "../Redux/features/CategorySlice"
 import { getProperties } from "../Redux/features/PropertySlice"
+import { useNavigate } from 'react-router-dom';
 
 const Filter = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getProperties());
     dispatch(getCategories());
   }, []);
+
+  const [searchType, setSearchType] = useState('Sell');
 
   const properties = useSelector((state) => state.property.properties);
   const categories = useSelector((state) => state.category.categories);
@@ -21,16 +25,27 @@ const Filter = () => {
     setSelectedButton(buttonName);
     switch (buttonName) {
       case 'Sell':
+        setSearchType('Sell');
         setSearchPlaceholder('Enter Keyword for Sell');
         break;
       case 'Rent':
+        setSearchType('Rent');
         setSearchPlaceholder('Enter Keyword for Rent');
         break;
       default:
+        setSearchType('');
         setSearchPlaceholder('Enter Keyword');
     }
   };
 
+  const handleSearch = () => {
+    if (searchType === 'Sell') {
+      navigate("/sell");
+    } else if (searchType === 'Rent') {
+      navigate("/buy");
+    }
+  };
+  
   return (
     <div>
       <div className="absolute sm:relative container w-[100%] mx-auto sm:mt-[12rem] mt-[3rem] px-4 sm:px-0">
@@ -85,7 +100,7 @@ const Filter = () => {
           </div>
 
           <div className="flex gap-[5rem] pt-4 sm:pt-0">
-            <button className="py-4 sm:py-0 my-0 sm:my-4 px-4 ml-5 sm:ml-20 bg-orange-900 rounded-lg text-white text-[1.5rem] mt-3"><IoSearchOutline /></button>
+            <button onClick={handleSearch} className="py-4 sm:py-0 my-0 sm:my-4 px-4 ml-5 sm:ml-20 bg-orange-900 rounded-lg text-white text-[1.5rem] mt-3"><IoSearchOutline /></button>
           </div>
         </div>
       </div>
