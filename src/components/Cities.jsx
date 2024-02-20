@@ -4,7 +4,7 @@ import { TiArrowRightThick } from "react-icons/ti";
 const Cities = () => {
   return (
     <div className="container w-[100%] mx-auto mt-[5rem]">
-      <div className="container w-[90%] mx-auto pb-[4rem]">
+      <div className="container w-[80%] mx-auto pb-[4rem]">
         <div>
           <h2 className="font-bold text-[1.2rem] sm:text-[2rem]">Properties by Cities</h2>
           <p>Aliquam lacinia diam quis lacus euismod</p>

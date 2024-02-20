@@ -5,15 +5,17 @@ import { GrSearch } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { GetCategories } from "../Redux/features/categorySlice"; 
-import Apartment from "../components/Apartment"
-import Features from "../components/Features"
-import Property from "../components/Property"
-import Cities from "../components/Cities"
-import Sellingoption from "../components/Sellingoption"
-import Popular2 from "../Pages/Popular2"
-import Blogs2 from "../Pages/Blogs2"
-
+import { GetCategories } from "../Redux/features/categorySlice";
+import Apartment from "../components/Apartment";
+import Features from "../components/Features";
+import Property from "../components/Property";
+import Cities from "../components/Cities";
+import Sellingoption from "../components/Sellingoption";
+import Popular2 from "../Pages/Popular2";
+import Blogs2 from "../Pages/Blogs2";
+import Contact from "../Pages/Contact";
+import Featuresmain from "../Pages/Featuresmain";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -23,34 +25,48 @@ const Hero = () => {
 
   const categories = useSelector((state) => state.category.categories);
 
-  const [selectedButton, setSelectedButton] = useState("Buy");
+  const [selectedButton, setSelectedButton] = useState("Rent");
   const [searchPlaceholder, setSearchPlaceholder] = useState(
-    "Enter an Address, neighborhood,city, or ZIP code for Buy"
+    "Enter an Address for Rent"
   );
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     switch (buttonName) {
-
-      case "Buy":
-        setSearchPlaceholder("Enter an Address, neighborhood,city, or ZIP code for Buy");
-        break;
       case "Rent":
-        setSearchPlaceholder("Enter an Address, neighborhood,city, or ZIP code for Rent");
+        setSearchPlaceholder(
+          "Enter an Address for Rent"
+        );
         break;
-      case "Sold":
-        setSearchPlaceholder("Enter an Address, neighborhood,city, or ZIP code for Sold");
+      case "Sell":
+        setSearchPlaceholder(
+          "Enter an Address for Sell"
+        );
         break;
       default:
-        setSearchPlaceholder("Enter Keyword");
+        setSearchPlaceholder(
+          "Enter an Address for Sell"
+        );
     }
   };
+  const navigate = useNavigate();
+  
+  const handleSearch = () => {
+    if (selectedButton === "Sell") {
+      navigate(`/sale2?location=${searchInput}`);
+    } else if (selectedButton === "Rent") {
+      navigate(`/buy2?location=${searchInput}`);
+    }
+  };
+
+  const [searchInput, setSearchInput] = useState("");
+
 
   return (
     <div>
       <div className="bg-[url('/image/home.jpg')] w-[100%] bg-cover h-[50rem]">
         {/* <Navbar /> */}
-        <hr className="h-px bg-gray-100 border-0 w-[30%] sm:w-[100%] mx-auto dark:bg-gray-800" />
+        <hr className="h-px bg-gray-100 border-0 w-[35%] sm:w-[100%] mx-auto dark:bg-gray-800" />
         <div className=" text-center text-white font-bold py-[8.5rem]">
           <h2> THE BEST WAY TO</h2>{" "}
           <span className="text-[2.5rem] sm:text-[3.5rem]">
@@ -61,8 +77,8 @@ const Hero = () => {
           </p>
         </div>
         <div className="">
-          <div className="w-[40%] ml-[1.1rem] flex justify-between rounded-t-lg sm:w-[12%] p-3 mx-auto font-bold text-[grey] container sm:ml-[11.8rem] bg-white">
-            <button
+          <div className="w-[40%] ml-[1.2rem] flex justify-center  gap-6 rounded-t-lg sm:w-[12%] p-3 mx-auto font-bold text-[grey] container sm:ml-[11.8rem] bg-white">
+            {/* <button
               onClick={() => handleButtonClick("Buy")}
               className={`font-medium ${
                 selectedButton === "Buy"
@@ -71,7 +87,7 @@ const Hero = () => {
               }`}
             >
               Buy
-            </button>
+            </button> */}
 
             <button
               onClick={() => handleButtonClick("Rent")}
@@ -85,14 +101,14 @@ const Hero = () => {
             </button>
 
             <button
-              onClick={() => handleButtonClick("Sold")}
+              onClick={() => handleButtonClick("Sell")}
               className={`font-medium ${
-                selectedButton === "Sold"
+                selectedButton === "Sell"
                   ? "border-b-2 border-black py-2 transition"
                   : "border-none"
               }`}
             >
-              Sold
+              Sell
             </button>
           </div>
 
@@ -102,23 +118,28 @@ const Hero = () => {
               type="text"
               placeholder={searchPlaceholder}
               className=" bg-[#F7F7F7] w-[87%] h-[4rem] sm:w-[65%] sm:h-[3.5rem] mx-5 p-4 rounded-xl"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
             <div className="flex gap-5  sm:gap-6">
               <div className="flex gap-3 sm:gap-2 ml-[1.5rem] mt-2">
                 <RiListSettingsFill className="mt-3 text-red-500" />
-                <h2 className="py-2 font-bold "> Advanced </h2>
+                <h2 className="py-2 font-bold "> Location </h2>
               </div>
-              <GrSearch className=" bg-red-500 p-3 mt-1 text-white rounded-full text-[3rem]" />
+              <GrSearch
+                onClick={handleSearch}
+                className="bg-red-400 text-[3.4rem] p-4  hover:bg-red-600 transition duration-300 text-white rounded-full text-3xl cursor-pointer"
+              />
             </div>
           </div>
         </div>
       </div>
       <Apartment />
-      <Features />
+      <Featuresmain />
       <Property />
       <Cities />
-      <Sellingoption/>
-      <Popular2/>
+      <Sellingoption />
+      <Popular2 />
       <Blogs2 />
     </div>
   );

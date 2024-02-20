@@ -3,19 +3,31 @@ import Buy from "../components/Buy";
 import Filter2 from "../components/Filter2";
 import { useDispatch, useSelector } from "react-redux";
 import { getProperties } from "../Redux/features/PropertySlice";
-import {Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Buy2 = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  
   useEffect(() => {
     dispatch(getProperties());
   }, []);
 
   const properties = useSelector((state) => state.property.properties);
-  const rentProperties = properties.filter(property => property.purpose === "rent")
-  const filterLocation = useSelector((state) => state.property.filterLocation);
+  const rentProperties = properties.filter(
+    (property) => property.purpose === "rent"
+  );
+  const searchParams = new URLSearchParams(location.search);
+  const filterLocation = searchParams.get("location");
+  // const filterLocation = useSelector((state) => state.property.filterLocation);
 
-  const filteredProperties =filterLocation ? rentProperties.filter(property => property.location.district === filterLocation) : rentProperties;
+  const filteredProperties = filterLocation
+    ? rentProperties.filter(
+        (property) => property.location.district === filterLocation
+      )
+    : rentProperties;
+
+    
 
   return (
     <>
@@ -24,14 +36,14 @@ const Buy2 = () => {
           <Filter2 />
 
           <div className="bg-[#F7F7F7] rounded-lg">
-            <div className="text-[1.6rem]  font-semibold container w-[90%] mt-[2rem] mx-auto">
+            <div className="text-[1.6rem]  font-semibold container w-[95%] mt-[2rem] mx-auto">
               <h2>New York Home For Buy</h2>
             </div>
             <div className="p-6 sm:container sm:grid grid-cols-2 gap-[2.6rem] mx-auto">
               {filteredProperties.map((property, index) => (
-               <Link to={`/buyelement/${property?._id}`}>
-                <Buy key={index} property={property} />
-                </Link> 
+                <Link to={`/buyelement/${property?._id}`} key={index}>
+                  <Buy  property={property} />
+                </Link>
               ))}
             </div>
           </div>

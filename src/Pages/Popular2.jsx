@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Popular from "../components/Popular";
 import { MdArrowOutward } from "react-icons/md";
+import {  useSelector } from "react-redux";
+import { getProperties } from "../Redux/features/PropertySlice";
+import { Link } from "react-router-dom";
 
 const Popular2 = () => {
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getProperties())
+  // });
+  const properties = useSelector((state) => state.property.properties);
+
   return (
     <div className="bg-[#181A20] mt-[5rem] pb-5">
       <div className="container w-[100%] mx-auto">
@@ -25,11 +34,13 @@ const Popular2 = () => {
         </div>
         <div>
           {/* <div className="flex pb-6  "> */}
-          <div className="p-6 sm:container sm:grid grid-cols-4 gap-6 mx-auto pb-9">
-            {[1, 1, 1, 1].map(() => {
-              return <Popular />;
-            })}
-          </div>
+          <div className="p-6 sm:container sm:grid grid-cols-3 gap-6 mx-auto pb-9">
+          {properties.map((property,index) => (
+              <Link key={index} to={`/BuyElement/${property?._id}`}> 
+              <Popular property={property} />
+              </Link>
+            ))}
+          </div>                              
           {/* </div> */}
         </div>
         <button className="w-[20%] flex ml-[30rem] h-[3rem] mt-2 text-white rounded-full border-2">

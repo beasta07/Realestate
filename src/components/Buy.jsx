@@ -9,8 +9,8 @@ const Buy = ({ property }) => {
   return (
     <>
       <div className="pb-5 ">
-        <div className="bg-white sm:w-[100%]  h-[20rem] transition duration-300 ease-in-out hover:scale-110 rounded-xl">
-          <img className="rounded-t-xl h-[12rem] w-[100%] " src={imageUrl} />
+        <div className="bg-white sm:w-[100% h-[20rem] transition duration-300 ease-in-out hover:scale-110 rounded-xl">
+          <img className="rounded-t-xl h-[12rem]  w-[100%] " src={imageUrl} />
           <h2 className="font-bold mt-5 ml-4 line-clamp-1">{property?.name}</h2>
           <p className="text-gray-400 ml-4">
             {property.location.tole}, {property?.location.district}{" "}

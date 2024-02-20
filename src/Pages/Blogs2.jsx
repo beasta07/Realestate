@@ -21,7 +21,7 @@ const Blogs2 = () => {
       <div>
       <div className="p-6 sm:container sm:grid grid-cols-3 gap-6 mx-auto pb-9">
             {blogs.map((blog, index) => (
-              <Blogs key={index} blog={blog} />
+             <Blogs key={index} blog={blog} />
             ))}
           </div>
       </div>

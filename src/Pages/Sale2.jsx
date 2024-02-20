@@ -3,6 +3,7 @@ import Sale from "../components/Sale";
 import Filter2 from "../components/Filter2";
 import { useDispatch, useSelector } from "react-redux";
 import { getProperties } from "../Redux/features/PropertySlice";
+import { Link } from "react-router-dom";
 
 const Sale2 = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,9 @@ const Sale2 = () => {
 
   const properties = useSelector((state) => state.property.properties);
   const saleProperies = properties.filter(property => property.purpose === "sale")
+  const filterLocation = useSelector((state) => state.property.filterLocation);
+
+  const filteredProperties =filterLocation ? saleProperies.filter(property => property.location.district === filterLocation) : saleProperies;
 
   return (
     <>
@@ -23,8 +27,10 @@ const Sale2 = () => {
               <h2>New York Home For Sale</h2>
             </div>
             <div className="p-6 sm:container sm:grid grid-cols-2 gap-[3rem] mx-auto">
-              {saleProperies.map((property, index) => (
+              {filteredProperties.map((property, index) => (
+                <Link to={`/buyelement/${property?._id}`}>
                 <Sale key={index} property={property} />
+                </Link>
               ))}
             </div>
           </div>

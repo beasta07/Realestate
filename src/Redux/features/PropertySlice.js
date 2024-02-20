@@ -53,7 +53,6 @@ const propertySlice = createSlice({
       state.error = action.payload;
     });
 
-
     // TODO: filter properties
     builder.addCase(filterProperties.pending, (state) => {
       state.isLoading = true;
