@@ -3,17 +3,21 @@ import Filter2 from '../components/Filter2';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProperties } from '../Redux/features/PropertySlice';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Sell = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const filterLocation = queryParams.get('location');
+
     useEffect(()=> {
         dispatch(getProperties());
     }, []);
 
     const properties = useSelector((state)=> state.property.properties);
     const saleProperties = properties.filter(properties => properties.purpose === 'sale');
-    const filterLocation = useSelector((state) => state.property.filterLocation);
+    // const filterLocation = useSelector((state) => state.property.filterLocation);
 
     const filteredProperties = filterLocation ? saleProperties.filter(property => property.location.district === filterLocation) : saleProperties;
 

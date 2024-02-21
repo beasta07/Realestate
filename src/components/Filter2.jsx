@@ -8,14 +8,40 @@ import { getProperties, filterProperties, setFilterLocation } from "../Redux/fea
 const Filter2 = () => {
     const dispatch = useDispatch();
 
+    const locationParams = new URLSearchParams(location.search);
+
+    const filterLocation = locationParams.get('location');
+    const filterCategory = locationParams.get('category');
+
+    const [filterQuery, setFilterQuery] = useState({})
+    const [searchLocation, setSearchLocation] = useState(""); // State to hold the input location
+
+
     useEffect(() => {
         dispatch(getProperties());
         dispatch(getCategories());
     }, []);
 
+    useEffect(() => {
+        setFilterQuery({
+            category: filterCategory,
+            location: {
+                district: filterLocation,
+            },
+        })
+
+        setSearchLocation(filterLocation)
+
+    }, [dispatch, filterCategory, filterLocation])
+
+    useEffect(() => {
+        dispatch(filterProperties(filterQuery));
+
+    }, [dispatch, filterQuery])
+
+
     const categories = useSelector((state) => state.category.categories);
-    const [range, setRange] = useState([0, 100000]);
-    const [searchLocation, setSearchLocation] = useState(""); // State to hold the input location
+    const [range, setRange] = useState([0, 300000]);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [allChecked, setAllChecked] = useState(true); // State to manage the "All" checkbox
 
@@ -27,21 +53,20 @@ const Filter2 = () => {
         const data = {
             priceRange: range,
             category: selectedCategories,
-            populate:'category'
+            populate: 'category'
         };
-
         dispatch(filterProperties(data));
         dispatch(setFilterLocation(searchLocation));
     }
 
-    useEffect(() => {
-        const data = {
-            location: {
-                district: searchLocation,
-            },
-        };
-        dispatch(filterProperties(data));
-    }, [searchLocation]);
+    // useEffect(() => {
+    //     const data = {
+    //         location: {
+    //             district: searchLocation,
+    //         },
+    //     };
+    //     dispatch(filterProperties(data));
+    // }, [searchLocation]);
 
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;
@@ -93,7 +118,7 @@ const Filter2 = () => {
                             <input
                                 type="checkbox"
                                 value={cat?._id}
-                                checked={selectedCategories.includes(cat?._id)}
+                                checked={selectedCategories.includes(cat?._id) || cat?._id === filterCategory}
                                 onChange={handleCheckboxChange}
                             />
                             {cat?.name}

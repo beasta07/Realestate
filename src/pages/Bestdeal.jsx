@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 // import Bestdealcomp from "../components/Bestdealcomp";
 import ForRent from '../components/ForRent';
 import ForSale from '../components/ForSale';
@@ -12,6 +14,25 @@ const Bestdeal = () => {
     useEffect(() => {
         dispatch(getProperties());
     }, []);
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        responsive: [
+            {
+                breakpoint: 768, // screen width at which the settings will change
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
 
     const [selectedButton, setSelectedButton] = useState("sale");
     const properties = useSelector((state) => state.property.properties);
@@ -51,6 +72,7 @@ const Bestdeal = () => {
                 </div>
 
                 <div className="sm:hidden grid grid-cols-1 grid-rows-1 gap-5">
+                    <Slider {...settings} className="sm:w-[74rem] w-[20rem] gap-[1rem] ml-[1rem] sm:ml-[0rem]">
                     {selectedButton === 'rent' ? (
                         rentProperties.map((property, index) => (
                             <Link key={index} to={`/buyelement/${property?._id}`}>
@@ -63,6 +85,7 @@ const Bestdeal = () => {
                         </Link>
                     ))
                     )}
+                    </Slider>
                 </div>
             </div>
         </div>

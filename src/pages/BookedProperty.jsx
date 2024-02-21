@@ -58,10 +58,10 @@ const BookedProperty = () => {
             <h2 className='font-semibold text-[1.5rem] py-[2rem]'>Booked Properties</h2>
             <div className="container grid sm:grid-cols-3 gap-5 mx-auto">
                 {bookedPropertyDetails.map((property, index) => (
-                        <Link key={index} to={`/buyelement/${property._id}`}>
+                    <Link key={index} to={`/buyelement/${property._id}`}>
                         {/* <p className='font-medium '>User Id: {property.user}</p> */}
-                        <BookedPropertyComp property={property}/>
-                        </Link>
+                        <BookedPropertyComp property={property} />
+                    </Link>
                 ))}
             </div>
         </div>

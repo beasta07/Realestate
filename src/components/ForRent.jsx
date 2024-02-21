@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 const ForRent = ({property}) => {
     return (
         <div>
-            <div className="shadow-md rounded-xl my-[2rem] sm:my-[5rem] mb-[6rem] ">
-                <img src={`https://api.myraj.au/${property.images[0]}`} className="rounded-t-xl h-[12rem] w-[18rem] object-cover" />
+            <div className="shadow-md rounded-xl my-[2rem] sm:my-[5rem] mb-[4rem] ">
+                <img src={`https://api.myraj.au/${property.images[0]}`} className="rounded-t-xl h-[12rem] w-[22.3rem] sm:w-[18rem] object-cover" />
                 <h2 className="font-medium mt-4 px-3">{property?.name}</h2>
                 <p className="text-sm text-gray-500 py-2 px-3">Los Angeles Ciy, USA</p>
                 <hr />

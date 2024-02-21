@@ -14,38 +14,44 @@ const Filter = () => {
   }, []);
 
   const [searchType, setSearchType] = useState('Sell');
-
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const properties = useSelector((state) => state.property.properties);
   const categories = useSelector((state) => state.category.categories);
 
   const [selectedButton, setSelectedButton] = useState('Sell');
-  const [searchPlaceholder, setSearchPlaceholder] = useState('Enter Keyword for Sell');
+  const [searchPlaceholder, setSearchPlaceholder] = useState('Browse properties for Sell');
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     switch (buttonName) {
       case 'Sell':
         setSearchType('Sell');
-        setSearchPlaceholder('Enter Keyword for Sell');
+        setSearchPlaceholder('Browse properties for Sell');
         break;
       case 'Rent':
         setSearchType('Rent');
-        setSearchPlaceholder('Enter Keyword for Rent');
+        setSearchPlaceholder('Browse properties for Rent');
         break;
       default:
         setSearchType('');
-        setSearchPlaceholder('Enter Keyword');
+        setSearchPlaceholder('Browse properties');
     }
   };
 
   const handleSearch = () => {
+    let url = '';
     if (searchType === 'Sell') {
-      navigate("/sell");
-    } else if (searchType === 'Rent') {
-      navigate("/buy");
+      url = `/sell?location=${selectedLocation}`
+    } else {
+      url = `/buy?location=${selectedLocation}`;
     }
+    if (selectedCategory) {
+      url += `&category=${selectedCategory}`
+    }
+    navigate(url);
   };
-  
+
   return (
     <div>
       <div className="absolute sm:relative container w-[100%] mx-auto sm:mt-[12rem] mt-[3rem] px-4 sm:px-0">
@@ -72,17 +78,17 @@ const Filter = () => {
           <div>
             <h2 className="font-medium px-4 py-2">Search</h2>
             <input
-              className="px-4 py-2 mx-3"
+              className="px-4 py-2 mx-3 w-[18rem] decoration-none border-none" readOnly
               type="search"
               placeholder={searchPlaceholder}
             />
           </div>
           <div>
             <h2 className="font-medium px-4 py-2">Looking For</h2>
-            <div className='px-4'> <select className="block w-full  border border-white text-gray-700 py-2 px-1 rounded leading-tight focus:outline-none">
-
+            <div className='px-4'> <select className="block w-full  border border-white text-gray-700 py-2 px-1 rounded leading-tight focus:outline-none" onChange={(e) => setSelectedCategory(e.target.value)}>
+              <option value="all">Select Property Type</option>
               {categories?.map((cat, index) => (
-                <option key={index} value={cat?.name}>{cat?.name}</option>
+                <option key={index} value={cat?._id}>{cat?.name}</option>
               ))}
 
             </select></div>
@@ -90,10 +96,10 @@ const Filter = () => {
           <div>
             <h2 className="font-medium px-4 py-2">Location</h2>
             <div className="px-0">
-              <select className="block w-full border border-white text-gray-700 py-2 px-1 sm:mx-4 rounded leading-tight focus:outline-none " id="grid-state">
-
+              <select className="block w-full border border-white text-gray-700 py-2 px-1 sm:mx-4 rounded leading-tight focus:outline-none " id="grid-state" onChange={(e) => setSelectedLocation(e.target.value)}>
+                <option value="all">Select Location</option>
                 {properties?.map((cat, index) => (
-                  <option key={index} value={cat?.location.tole}>{cat?.location.tole}</option>
+                  <option key={index} value={cat?.location.district}>{cat?.location.district}</option>
                 ))}
               </select>
             </div>

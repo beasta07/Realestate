@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getProperties } from '../Redux/features/PropertySlice';
 import BuyComp from '../components/BuyComp';
 import Filter2 from '../components/Filter2';
@@ -8,18 +8,34 @@ import { getCategories } from "../Redux/features/CategorySlice";
 
 const Buy = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const locationParams = new URLSearchParams(location.search);
+
+    const filterLocation = locationParams.get('location');
+    const filterCategory = locationParams.get('category');
+
+    console.log(locationParams, "loation params", filterCategory)
+
     useEffect(() => {
         dispatch(getProperties());
         dispatch(getCategories());
-        
     }, []);
 
     const categories = useSelector((state) => state.category.categories);
     const properties = useSelector((state) => state.property.properties);
     const rentProperties = properties.filter(property => property.purpose === 'rent');
-    const filterLocation = useSelector((state) => state.property.filterLocation); // Change this to get filterLocation from Redux store
 
-    const filteredProperties = filterLocation ? rentProperties.filter(property => property.location.district === filterLocation) : rentProperties;
+    // Filter properties based on location and category
+    const filteredProperties = rentProperties.filter(property => {
+        if (filterLocation && filterCategory) {
+            return property.location.district === filterLocation && categories.name === filterCategory;
+        } else if (filterLocation) {
+            return property.location.district === filterLocation;
+        } else if (filterCategory) {
+            return categories.name === filterCategory;
+        }
+        return true; // Return all properties if no filter applied
+    });
 
     return (
         <>
@@ -37,9 +53,9 @@ const Buy = () => {
                                     <BuyComp property={property} />
                                 </Link>
                             ))}
-                            {categories.map((category, index) => (
-                                <Link key={index} to={`/buyelement/${category?._id}`}>
-                                    <BuyComp category={category} />
+                            {filteredProperties.map((categories, index) => (
+                                <Link key={index} to={`/buyelement/${categories?._id}`}>
+                                    <BuyComp categories={categories} />
                                 </Link>
                             ))}
                         </div>

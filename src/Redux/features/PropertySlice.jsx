@@ -20,19 +20,20 @@ export const getProperties = createAsyncThunk("getProperties/Properties", async 
 });
 
 export const filterProperties = createAsyncThunk("filterProperties/Properties", async (data, thunkAPI) => {
-        try {
-            const res = await api.post("properties/search", data);
-            console.log(res.data.data, "response of property");
-            return res.data.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error);
-        }
+    console.log(data, "dataaaa")
+    try {
+        const res = await api.post("properties/search", data);
+        console.log(res.data.data, "response of property");
+        return res.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
     }
+}
 );
 
-export const postBookedProperties = createAsyncThunk("postBookedProperties/Properties", async ({propertyId, userId}, thunkApi) => {
+export const postBookedProperties = createAsyncThunk("postBookedProperties/Properties", async ({ propertyId, userId }, thunkApi) => {
     try {
-        const res = await api.post("purchase/create", {property:propertyId, user:userId} ); 
+        const res = await api.post("purchase/create", { property: propertyId, user: userId });
         localStorage.setItem('username', res.data.user._id);
         return res.data.data;
     } catch (error) {
@@ -42,7 +43,7 @@ export const postBookedProperties = createAsyncThunk("postBookedProperties/Prope
 
 export const getBookedProperties = createAsyncThunk("getBookedProperties/Properties", async (data, thunkApi) => {
     try {
-        const res = await api.post("purchase/search", data ); 
+        const res = await api.post("purchase/search", data);
         console.log(res.data.data, "response of booked properties");
         // localStorage.setItem('username', res.data.user._id);
         return res.data.data;
@@ -57,6 +58,9 @@ export const propertySlice = createSlice({
     reducers: {
         setBookedProperties: (state, action) => {
             state.bookedProperties = action.payload;
+        },
+        setFilterLocation: (state, action) => {
+            state.filterLocation = action.payload;
         },
     },
 
@@ -104,6 +108,6 @@ export const propertySlice = createSlice({
     },
 });
 
-export const { setFilterLocation, setBookedProperties  } = propertySlice.actions;
+export const { setFilterLocation, setBookedProperties } = propertySlice.actions;
 
 export default propertySlice.reducer;

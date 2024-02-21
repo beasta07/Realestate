@@ -60,8 +60,8 @@ const Discover = () => {
                         </Link>
                         ))
                         }
-
                     </Slider>
+
                 </div>
 
             </div>
